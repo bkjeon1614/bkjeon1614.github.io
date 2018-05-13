@@ -1,44 +1,44 @@
-permalink: /:year-:month-:day/:title/
+# Basic settings
+description:  This is personal blog.
+baseurl: "/"
+url: "https://lavkumarv.github.io" 
+twitter_username: LAV_K_V
+github_username:  lavkumarv
+include: ['_pages']
 
-highlighter: rouge
-markdown: kramdown
+# Build settings
+markdown:    kramdown
+highlighter: pygments
+lsi:         false
+excerpt_separator: "\n\n"
+gems:
+  - jekyll-feed
+  - jekyll-paginate
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+# pagination
+gems: [jekyll-paginate]
+paginate: 5
+paginate_path: "/page:num/"
+
+# Enable comments
+comments: true
+
+# Markdown settings
 kramdown:
-  input:  GFM
-  syntax_highlighter: rouge
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
 
-
-paginate: 10
-paginate_path: ":num"
-baseurl: ""
-
-
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: post
-      styles : [highlight.css,post.css]
-      scripts : [post.js]
-
-
-
-title: "RainyAlley"
-email: "sincerebravefight@gmail.com"
-description: "Developer"
-github_username:  "WakelessDragon"
-swiftype_searchId: "ncwR9a8S9CTx2q9SgsJm"
-disqus_shortname: "rainyalley"
-
-
-
-
-url: "http://blog.rainyalley.com"
-imgrepo: "http://blog.rainyalley.com/static/img"
-
-
-#url: "http://127.0.0.1:4000"
-#imgrepo: "http://127.0.0.1:4000/static/img"
-
+  coderay:
+    coderay_wrap:              div
+    coderay_line_numbers:      inline
+    coderay_line_number_start: 1
+    coderay_tab_width:         4
+    coderay_bold_every:        10
+    coderay_css:               style

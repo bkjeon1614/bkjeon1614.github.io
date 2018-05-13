@@ -1,15 +1,27 @@
-    <footer  class="footnote footnote-tiffany">
-        <div class="container">
-                <a class="foot-item" href="mailto:{{ site.email }}" target="_blank"><span class="octicon octicon-mail"></span></a>
-                <a class="foot-item" href="https://github.com/{{ site.github_username }}" target="_blank"><span class="octicon octicon-mark-github"></span></a>
-                <a class="foot-item" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" target="_blank"><span class="octicon octicon-rss"></span></a>
-                <a class="foot-item" href="{{ '/link/' | prepend: site.baseurl | prepend: site.url }}"><span class="octicon octicon-link-external"></span></a>
-                &nbsp;
-                <a href="http://blog.rainyalley.com/"><span class="word-keep">&copy; RainyAlley</span></a>
+<hr>
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="copyright">
+                    © 2017, {{ site.data.global.title }}, All rights reserved
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="design">
+                    <a href="#"> {{ site.admin_name }} </a>  <a target="_blank" href="https://github.com/lavkumarv">Design & Develop by Lav Vishwakarma</a>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{'/static/js/script.js' | prepend:site.baseurl | prepend: site.url  }}"></script>
-    {% for script in page.scripts %}<script type="text/javascript" src="{{'/static/js/' | append:script | prepend:site.baseurl | prepend: site.url  }}"></script>
-    {%endfor%}
+    </div>
+</div>
+
+<!-- ALl js file links -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{{site.url}}/js/bootstrap.min.js"></script>
+<script src="{{site.url}}/js/custom.js"></script>
+<script src="{{site.url}}/js/lunr.min.js"></script>
+<script src="{{site.url}}/js/search.js"></script>
+</body>
+
+</html>
