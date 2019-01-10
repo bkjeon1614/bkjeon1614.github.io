@@ -39,4 +39,4 @@ VS Code 에디터 플러그인을 이용하여 Markdown문서를 HTML로 변환
     ![tool-vscode-6](/img/posts/tool/tool-vscode-6.png)  
 
   - 글 작성을 눌러서 완료하자. (단, 이미지 같은경우는 직접 티스토리 사진등록을 통하여 등록해야하는 번거로움이 있다.)
-    ![tool-vscode-6](/img/posts/tool/tool-vscode-6.png)
+    ![tool-vscode-7](/img/posts/tool/tool-vscode-7.png)
