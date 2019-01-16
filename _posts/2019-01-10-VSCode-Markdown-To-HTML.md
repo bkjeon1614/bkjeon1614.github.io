@@ -6,7 +6,7 @@ date: 2019-01-10 10:51:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
-tags: [Tool]
+tags: [tool]
 ---
 
 VS Code 에디터 플러그인을 이용하여 Markdown문서를 HTML로 변환
