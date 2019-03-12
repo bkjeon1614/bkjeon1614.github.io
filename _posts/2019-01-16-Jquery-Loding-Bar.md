@@ -6,7 +6,7 @@ date: 2019-01-16 18:50:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
-tags: [javascript]
+tags: [Javascript]
 ---
 
 Jquery를 활용한 Loading Bar 구현
