@@ -56,6 +56,8 @@ Old 영역의 객체가 Young 영역의 객체를 참조하는 경우
 
 위와 같이 Young 영역에서 Minor GC를 통하여 Old 영역까지 데이터가 쌓인 것을 아래 그림을 보면 알 수 있다.
 ![java-gc-1](/img/posts/language/java/java-gc-1.png)
+##### 이미지 출처: https://d2.naver.com/helloworld/1329
+
 > Young 영역에서는 Eden 영역에 최초로 객체가 만들어지고, Survivor 영역을 통해서 Old 영역으로 오래 살아남은 객체가 이동한다는 사실은 꼭 기억하자.
 
 ### 추가적으로 아래는 알고만 있어도 된다.
@@ -86,11 +88,31 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
 - Parallel Old GC는 JDK 5 update 6부터 제공한 GC 방식이다. 앞서 설명한 Parallel GC와 비교하여 Old 영역의 GC 알고리즘만 다르다. 이 방식은 Mark-Summary-Compaction 단계를 거친다. Summary 단계는 앞서 GC를 수행한 영역에 대해서 별도로 살아 있는 객체를 식별한다는 점에서 Mark-Sweep-Compaction 알고리즘의 Sweep 단계와 다르며, 약간 더 복잡한 단계를 거친다. (어떤건지만 알아두기만 하자)
 
 ### CMS GC (-XX:+UseConcMarkSweepGC)
-- 
+![java-gc-2](/img/posts/language/java/java-gc-2.png)
+##### 이미지 출처: https://d2.naver.com/helloworld/1329
 
-### G1 GC
-- 
+- 초기 Initial Mark 단계에서는 클래스 로더에서 가장 가까운 객체 중 살아 있는 객체만 찾는 것으로 끝낸다. 따라서, 멈추는 시간은 매우 짧다. 그리고 Concurrent Mark 단계에서는 방금 살아있다고 확인한 객체에서 참조하고 있는 객체들을 따라가면서 확인한다. 이 단계의 특징은 다른 스레드가 실행 중인 상태에서 동시에 진행된다는 것이다.
 
+그 다음 Remark 단계에서는 Concurrent Mark 단계에서 새로 추가되거나 참조가 끊긴 객체를 확인한다. 마지막으로 Concurrent Sweep 단계에서는 쓰레기를 정리하는 작업을 실행한다. 이 작업도 다른 스레드가 실행되고 있는 상황에서 진행한다.
+
+이러한 단계로 진행되는 GC 방식이기 때문에 stop-the-world 시간이 매우 짧다. 모든 애플리케이션의 응답 속도가 매우 중요할 때 CMS GC를 사용하며, Low Latency GC라고도 부른다.
+
+그런데 CMS GC는 stop-the-world 시간이 짧다는 장점에 반해 다음과 같은 단점이 존재한다.
+- 다른 GC 방식보다 메모리와 CPU를 더 많이 사용한다.
+- Compaction 단계가 기본적으로 제공되지 않는다.
+
+> 따라서, CMS GC를 사용할 때에는 신중히 검토한 후에 사용해야 한다. 그리고 조각난 메모리가 많아 Compaction 작업을 실행하면 다른 GC 방식의 stop-the-world 시간보다 stop-the-world 시간이 더 길기 때문에 Compaction 작업이 얼마나 자주, 오랫동안 수행되는지 확인해야 한다.
+
+### G1 GC (-XX:+UseG1GC)
+- G1 GC를 이해하기 위해선 지금까지의 Young 영역과 Old 영역에 대해서는 잊는 것이 좋다. 다음 그림에서 보다시피, G1 GC는 바둑판의 각 영역에 객체를 할당하고 GC를 실행한다. 그러다가, 해당 영역이 꽉 차면 다른 영역에서 객체를 할당하고 GC를 실행한다. 즉, 지금까지 설명한 Young의 세가지 영역에서 데이터가 Old 영역으로 이동하는 단계가 사라진 GC 방식이라고 이해하면 된다. G1 GC는 장기적으로 말도 많고 탈도 많은 CMS GC를 대체하기 위해서 만들어 졌다.
+
+![java-gc-3](/img/posts/language/java/java-gc-3.png)
+
+> G1 GC의 가장 큰 장점은 성능이다. 지금까지 설명한 어떤 GC 방식보다도 빠르다. 하지만, JDK 6에서는 G1 GC를 early access라고 부르며 그냥 시험삼아 사용할 수만 있도록 한다. 그리고 JDK 7에서 정식으로 G1 GC를 포함하여 제공한다. 그러나 JDK 7을 실서비스에서 사용하려면 많은 검증 기간(1년은 필요하다는 생각이다)을 거쳐야 할 것으로 보이기 때문에, G1 GC를 당장 사용하고 싶어도 더 기다리는 것이 좋다는 것이 개인적인 생각이다. java6에서 G1 GC를 적용했다가 JVM Crash가 발생했다는 말도 몇 번 들었기에 더더욱 안정화될 때까지 기다리는 것이 좋겠다. (java7 u60 이상 버전에서 사용하고, java8에서는 class 영역이 클 경우 class unloading을 하는 gc 시간이 매우 길어질 수 있다. 아래와 같은 옵션으로 대부분 문제가 없어진다.)
+
+```
+-XX:+UseLargePagesInMetaspace
+```
 
 # References
 - https://www.oracle.com/technetwork/java/index.html
