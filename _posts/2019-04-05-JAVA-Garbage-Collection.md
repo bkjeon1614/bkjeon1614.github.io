@@ -1,6 +1,6 @@
 ---
 layout: post
-title : "JAVA Garbage Collection (작성중)"
+title : "JAVA Garbage Collection"
 subtitle : "2019-04-05-JAVA Garbage Collection"
 date: 2019-04-05 19:00:00
 author: "전봉근"
