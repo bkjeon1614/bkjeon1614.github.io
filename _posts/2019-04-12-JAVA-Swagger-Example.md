@@ -191,7 +191,7 @@ Swagger를 사용한 API문서 자동화
   ```  
   
 ### 결과  
-![java-swagger-2](/img/posts/language/java/java-swagger-2.png) 
+![java-swagger-3](/img/posts/language/java/java-swagger-3.png) 
 
 ### 구조  
-![java-swagger-3](/img/posts/language/java/java-swagger-3.png)
+![java-swagger-2](/img/posts/language/java/java-swagger-2.png)
