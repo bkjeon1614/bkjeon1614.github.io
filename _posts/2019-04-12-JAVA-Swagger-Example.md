@@ -15,7 +15,7 @@ Swagger를 사용한 API문서 자동화
 ![java-swagger-1](/img/posts/language/java/java-swagger-1.png)
 
 ## [Document]
-- Tistory: https://bkjeon1614.tistory.com/??
+- Tistory: https://bkjeon1614.tistory.com/256
 - Github: https://github.com/bkjeon1614/java-example-code/tree/master/swagger-example
 
 
@@ -28,7 +28,7 @@ Swagger를 사용한 API문서 자동화
 
 ## [Description]
 
-- dependencies 추가
+### dependencies 추가
   ```
     // const
     def swaggerVersion = '2.8.0'
@@ -42,7 +42,7 @@ Swagger를 사용한 API문서 자동화
     }
   ```
 
-- Swagger Config 작성
+### Swagger Config 작성  
   [../com/bkjeon/example/config/SwaggerConfig.java]
   ```
     package com.bkjeon.example.config;
@@ -101,7 +101,7 @@ Swagger를 사용한 API문서 자동화
     }
   ```
 
-- 컨트롤러 작성
+### 컨트롤러 작성
   [../com/bkjeon/example/api/v1/controller/ExampleController.java]
   ```
     package com.bkjeon.example.api.v1.controller;
@@ -190,8 +190,8 @@ Swagger를 사용한 API문서 자동화
     }
   ```  
   
-- 결과  
+### 결과  
 ![java-swagger-2](/img/posts/language/java/java-swagger-2.png) 
 
-- 구조  
+### 구조  
 ![java-swagger-3](/img/posts/language/java/java-swagger-3.png)
