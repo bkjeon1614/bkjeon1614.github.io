@@ -29,12 +29,13 @@ Java는 프로그램 코드에서 메모리를 명시적으로 지정하여 해�
 
 ### 영역
 #### Young 영역(=Young Generation 영역)
-- 새롭게 생성한 객체의 대부분이 여기에 위치한다. 대부분의 객체가 금방 접근 불가능 상태가 되기 때문에 매우 많은 객체가 Young 영역에 생성되었다가 사라진다. 이 영역에서 객체가 사라질 때 Minor GC가 발생한고 말한다.
+새롭게 생성한 객체의 대부분이 여기에 위치한다. 대부분의 객체가 금방 접근 불가능 상태가 되기 때문에 매우 많은 객체가 Young 영역에 생성되었다가 사라진다. 이 영역에서 객체가 사라질 때 Minor GC가 발생한고 말한다.
+
 #### Old 영역(=Old Generation 영역)
-- 접근 불가능 상태로 되지 않아 Young 영역에서 살아남은 객체가 여기로 복사된다. 대부분 Young 영역보다 크게 할당하며, 크기가 큰 만큼 Young 영역보다 GC는 적게 발생한다. 이 영역에서 객체가 사라질 때 Major GC(혹은 Full GC)가 발생한다고 말한다.
+접근 불가능 상태로 되지 않아 Young 영역에서 살아남은 객체가 여기로 복사된다. 대부분 Young 영역보다 크게 할당하며, 크기가 큰 만큼 Young 영역보다 GC는 적게 발생한다. 이 영역에서 객체가 사라질 때 Major GC(혹은 Full GC)가 발생한다고 말한다.
 
 위의 영역의 데이터 흐름은 아래와 같다. (Perm 영역은 다음 내용에 참고하자.)
-- ( Young 영역 할당 -> Old 영역 이동 ) | ( Perm 영역 )
+> ( Young 영역 할당 -> Old 영역 이동 ) | ( Perm 영역 )
 
 Permanent Generation 영역(이하 Perm 영역)
 - 해당 영역은 Method Area라고도 불린다. 객체나 억류된 문자열 정보를 저장하는 곳이며, Old 영역에서 살아남은 객체가 영원히 남아 있는 곳이 절대 아니며 여기서 GC가 발생해도 Major GC의 횟수에 포함된다.
@@ -71,6 +72,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
 - Parallel Old GC(Parallel Compacting GC)
 - Concurrent Mark & Sweep GC(이하 CMS)
 - G1(Garbage First) GC
+
 > 이 중 운영서버에서 절대 사용하면 안 되는 방식이 Serial GC이다. Serial GC는 데스크톱의 CPU 코어가 싱글일 경우에만 사용하기 위하여 만든 방식이다. (성능 저하 발생)
 
 아래는 java 버전마다 default로 사용되는 gc이다.
@@ -81,7 +83,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
 
 
 ### Serial GC (-XX:+UseSerialGC)
-- Young 영역과 Old 영역이 시리얼하게(연속적으로) 처리되며 하나의 CPU를 사용합니다. 이 처리를 수행할 때를 Stop-the-world라고 표현합니다. 다시 말하면, 콜렉션이 수행될 때 애플리케이션 수행이 정지됩니다.  
+Young 영역과 Old 영역이 시리얼하게(연속적으로) 처리되며 하나의 CPU를 사용합니다. 이 처리를 수행할 때를 Stop-the-world라고 표현합니다. 다시 말하면, 콜렉션이 수행될 때 애플리케이션 수행이 정지됩니다.  
   ![java-gc-1](/img/posts/language/java/java-gc-1.png)
   이미지 출처: https://d2.naver.com/helloworld/1329
 
@@ -89,7 +91,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
   2. Eden 영역이 꽉차게 되면 To Survivor 영역(비어있는 영역)으로 살아 있는 객체가 이동합니다. 이때 Survivor 영역에 들어가기에 너무 큰 객체는 바로 Old 영역으로 이동합니다. 그리고 From Survivor 영역에 있는 살아 있는 객체는 To Survivor 영역으로 이동합니다.
   3. To Survivor 영역이 꽉 찼을 경우, Eden 영역이나 From Survivor 영역에 남아 있는 객체들은 Old 영역으로 이동합니다.
 
-- 이 이후에 Old 영역이나 Perm 영역에 있는 객체들은 Mark-sweep-compact 콜렉션 알고리즘을 따릅니다. 이 알고리즘에 대해서 간단하게 말하면, 안 쓰는 거 표시해서 삭제하고 한 곳으로 모으는 알고리즘입니다.
+이 이후에 Old 영역이나 Perm 영역에 있는 객체들은 Mark-sweep-compact 콜렉션 알고리즘을 따릅니다. 이 알고리즘에 대해서 간단하게 말하면, 안 쓰는 거 표시해서 삭제하고 한 곳으로 모으는 알고리즘입니다.
   1. Old 영역으로 이동된 객체들 중 살아 있는 개체를 식별합니다. (Mark)
   2. Old 영역의 객체들을 훑는 작업을 수행하여 쓰레기 객체를 식별합니다. (Sweep)
   3. 필요 없는 객체들을 지우고 살아 있는 객체들을 한 곳으로 모은다 (Compact)
@@ -98,7 +100,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
 
 
 ### Parallel GC (-XX:+UseParallelGC)
-- Throughput Collector 라고도 불리며 이 방식은 다른 CPU가 대기 상태로 남아 있는 것을 최소화하는 것입니다. 시리얼 콜렉터와 달리 Young 영역에서의 콜렉션을 병렬(Parallel)로 처리합니다. Old 영역의 GC는 시리얼 콜렉터와 마찬가지로 Mark-Sweep-Compact 콜렉션 알고리즘을 사용 합니다.
+Throughput Collector 라고도 불리며 이 방식은 다른 CPU가 대기 상태로 남아 있는 것을 최소화하는 것입니다. 시리얼 콜렉터와 달리 Young 영역에서의 콜렉션을 병렬(Parallel)로 처리합니다. Old 영역의 GC는 시리얼 콜렉터와 마찬가지로 Mark-Sweep-Compact 콜렉션 알고리즘을 사용 합니다.
 
   ![java-gc-new-1](/img/posts/language/java/java-gc-new-1.png)
   이미지 출처: https://www.oracle.com/technetwork/java/javase/tech/memorymanagement-whitepaper-1-150020.pdf
@@ -107,7 +109,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
 
 
 ### Parallel Old GC(-XX:+UseParallelOldGC)
-- 병렬 콜렉터와 다른 점은 Old 영역 GC에서 새로운 알고리즘을 사용합니다. 그러므로 Young 영역에 대한 GC는 병렬 콜렉터와 동일하지만, Old 영역의 GC는 다음의 3단계를 거치게 됩니다. 
+병렬 콜렉터와 다른 점은 Old 영역 GC에서 새로운 알고리즘을 사용합니다. 그러므로 Young 영역에 대한 GC는 병렬 콜렉터와 동일하지만, Old 영역의 GC는 다음의 3단계를 거치게 됩니다. 
   1. Mark 단계 : 살아 있는 객체를 식별하여 표시해 놓는 단계 
   2. Sweep 단계 : 이전에 GC를 수행하여 컴팩션된 영역에 살아 있는 객체의 위치를 조사하는 단계 
   3. Compact 단계 : 컴팩션을 수행하는 단계. 수행 이후에는 컴팩션된 영역과 비어 있는 영역으로 나뉩니다. 
@@ -116,7 +118,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
 
 
 ### CMS GC (-XX:+UseConcMarkSweepGC)
-- 이 방식은 low-latency collector로도 알려져 있으며, 힙 메모리 영역의 크기가 클 때 적합합니다. Young 영역에 대한 GC는 병렬 콜렉터와 동일합니다. Old 영역의 GC는 다음 단계를 거칩니다.
+이 방식은 low-latency collector로도 알려져 있으며, 힙 메모리 영역의 크기가 클 때 적합합니다. Young 영역에 대한 GC는 병렬 콜렉터와 동일합니다. Old 영역의 GC는 다음 단계를 거칩니다.
   1. Mark 단계 : 매우 짧은 대기 시간으로 살아 있는 객체를 찾는 단계
   2. Sweep 단계 : 서버 수행과 동시에 살아 있는 객체에 표시를 해 놓는 단계
   3. Remark 단계 : Concurrent 표시 단계에서 표시하는 동안 변경된 객체에 대해서 다시 표시하는 단계
@@ -125,7 +127,7 @@ Old 영역은 데이터가 가득 차면 GC를 실행한다. GC 방식에 따라
   ![java-gc-2](/img/posts/language/java/java-gc-2.png)
   이미지 출처: https://d2.naver.com/helloworld/1329
 
-- 초기 Initial Mark 단계에서는 클래스 로더에서 가장 가까운 객체 중 살아 있는 객체만 찾는 것으로 끝낸다. 따라서, 멈추는 시간은 매우 짧다. 그리고 Concurrent Mark 단계에서는 방금 살아있다고 확인한 객체에서 참조하고 있는 객체들을 따라가면서 확인한다. 이 단계의 특징은 다른 스레드가 실행 중인 상태에서 동시에 진행된다는 것이다.
+초기 Initial Mark 단계에서는 클래스 로더에서 가장 가까운 객체 중 살아 있는 객체만 찾는 것으로 끝낸다. 따라서, 멈추는 시간은 매우 짧다. 그리고 Concurrent Mark 단계에서는 방금 살아있다고 확인한 객체에서 참조하고 있는 객체들을 따라가면서 확인한다. 이 단계의 특징은 다른 스레드가 실행 중인 상태에서 동시에 진행된다는 것이다.
 
 그 다음 Remark 단계에서는 Concurrent Mark 단계에서 새로 추가되거나 참조가 끊긴 객체를 확인한다. 마지막으로 Concurrent Sweep 단계에서는 쓰레기를 정리하는 작업을 실행한다. 이 작업도 다른 스레드가 실행되고 있는 상황에서 진행한다.
 
@@ -141,7 +143,7 @@ CMS는 컴팩션 단계를 거치지 않기 때문에 왼쪽으로 메모리를 
 
 
 ### G1 GC (-XX:+UseG1GC)
-- G1 GC를 이해하기 위해선 지금까지의 Young 영역과 Old 영역에 대해서는 잊는 것이 좋다. 다음 그림에서 보다시피, G1 GC는 바둑판의 각 영역에 객체를 할당하고 GC를 실행한다. 그러다가, 해당 영역이 꽉 차면 다른 영역에서 객체를 할당하고 GC를 실행한다. 즉, 지금까지 설명한 Young의 세가지 영역에서 데이터가 Old 영역으로 이동하는 단계가 사라진 GC 방식이라고 이해하면 된다. G1 GC는 장기적으로 말도 많고 탈도 많은 CMS GC를 대체하기 위해서 만들어 졌다.
+G1 GC를 이해하기 위해선 지금까지의 Young 영역과 Old 영역에 대해서는 잊는 것이 좋다. 다음 그림에서 보다시피, G1 GC는 바둑판의 각 영역에 객체를 할당하고 GC를 실행한다. 그러다가, 해당 영역이 꽉 차면 다른 영역에서 객체를 할당하고 GC를 실행한다. 즉, 지금까지 설명한 Young의 세가지 영역에서 데이터가 Old 영역으로 이동하는 단계가 사라진 GC 방식이라고 이해하면 된다. G1 GC는 장기적으로 말도 많고 탈도 많은 CMS GC를 대체하기 위해서 만들어 졌다.
 
 ![java-gc-3](/img/posts/language/java/java-gc-3.png)
 
@@ -151,6 +153,7 @@ CMS는 컴팩션 단계를 거치지 않기 때문에 왼쪽으로 메모리를 
 -XX:+UseLargePagesInMetaspace
 ```
 
+# 마무리
 개발자인 경우에는 GC에 대해 이해만 하고 있으면 된다. 단, 시스템 오픈 전 성능테스트 또는 서버 세팅시 알맞는 GC 방식을 개발한 시스템에 적용하자.
 
 # References
