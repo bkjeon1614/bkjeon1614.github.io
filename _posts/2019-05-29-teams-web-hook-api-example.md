@@ -14,45 +14,45 @@ Teams Web Hook API를 이용한 Message Sending 처리
 Teams 메신저를 사용할 경우 애플리케이션에 알람이 필요한 경우의 예제 코드이다.
 
 ## 메세지를 수신받을 Teams API 생성
-1. Teams 좌측 메뉴에서 "팀"을 클릭한다.  
-    ![etc-teams-api-1](/img/posts/lib/teams/etc-teams-api-1.png)
+(1) Teams 좌측 메뉴에서 "팀"을 클릭한다.  
+![etc-teams-api-1](/img/posts/lib/teams/etc-teams-api-1.png)
 
-2. "채널 추가"를 클릭한다.
-    ![etc-teams-api-2](/img/posts/lib/teams/etc-teams-api-2.png)
+(2) "채널 추가"를 클릭한다.
+![etc-teams-api-2](/img/posts/lib/teams/etc-teams-api-2.png)
 
-3. 입력란에 입력 후 "추가"를 클릭한다.
-    ![etc-teams-api-3](/img/posts/lib/teams/etc-teams-api-3.png)
+(3) 입력란에 입력 후 "추가"를 클릭한다.
+![etc-teams-api-3](/img/posts/lib/teams/etc-teams-api-3.png)
 
-4. "커넥터"를 선택한다.
-    ![etc-teams-api-4](/img/posts/lib/teams/etc-teams-api-4.png)
+(4) "커넥터"를 선택한다.
+![etc-teams-api-4](/img/posts/lib/teams/etc-teams-api-4.png)
 
-5. "Incoming Webhook" 우측의 "구성" 버튼을 클릭한다.
-    ![etc-teams-api-5](/img/posts/lib/teams/etc-teams-api-5.png)
+(5) "Incoming Webhook" 우측의 "구성" 버튼을 클릭한다.
+![etc-teams-api-5](/img/posts/lib/teams/etc-teams-api-5.png)
 
-6. 이름을 입력하고 하단의 "만들기" 버튼 클릭.
-    ![etc-teams-api-6](/img/posts/lib/teams/etc-teams-api-6.png)
+(6) 이름을 입력하고 하단의 "만들기" 버튼 클릭.
+![etc-teams-api-6](/img/posts/lib/teams/etc-teams-api-6.png)
 
-7. 제공하는 URL을 복사한다. (반드시 기억하고 있어야 한다.)
-    ![etc-teams-api-7](/img/posts/lib/teams/etc-teams-api-7.png)
+(7) 제공하는 URL을 복사한다. (반드시 기억하고 있어야 한다.)
+![etc-teams-api-7](/img/posts/lib/teams/etc-teams-api-7.png)
 
-8. 좌측 구성됨을 선택하여 확인할 수 있다.
-    ![etc-teams-api-8](/img/posts/lib/teams/etc-teams-api-8.png)
+(8) 좌측 구성됨을 선택하여 확인할 수 있다.
+![etc-teams-api-8](/img/posts/lib/teams/etc-teams-api-8.png)
 
-9. "이 채널 팔로우"를 선택하면 팀즈 채널로 메세지가 전송될 때 마다 알림이 표시된다.
-    ![etc-teams-api-9](/img/posts/lib/teams/etc-teams-api-9.png)
+(9) "이 채널 팔로우"를 선택하면 팀즈 채널로 메세지가 전송될 때 마다 알림이 표시된다.
+![etc-teams-api-9](/img/posts/lib/teams/etc-teams-api-9.png)
 
-10. 해당 URL과 Contents-Type을 설정하고 json형태로 request를 보내어 테스트를 한다. (완료되면 1을 리턴)
-    ```
-        {
-            "themeColor": "BCF7DA",
-            "title": "테스트제목",
-            "text": "테스트내용2"
-        }
-    ```
-    ![etc-teams-api-10](/img/posts/lib/teams/etc-teams-api-10.png)
+(10) 해당 URL과 Contents-Type을 설정하고 json형태로 request를 보내어 테스트를 한다. (완료되면 1을 리턴)
+```
+    {
+        "themeColor": "BCF7DA",
+        "title": "테스트제목",
+        "text": "테스트내용2"
+    }
+```
+![etc-teams-api-10](/img/posts/lib/teams/etc-teams-api-10.png)
 
 ## 코드 작성
-1. 설정파일 내용 추가
+(1) 설정파일 내용 추가
    [application.yml]
    ```
         ...
@@ -61,7 +61,7 @@ Teams 메신저를 사용할 경우 애플리케이션에 알람이 필요한 �
         ...
    ```
 
-2. 클래스 작성
+(2) 클래스 작성
    [TeamsWebHookMessage.java]
    ```
         import com.fasterxml.jackson.annotation.JsonProperty;
@@ -159,7 +159,7 @@ Teams 메신저를 사용할 경우 애플리케이션에 알람이 필요한 �
         }
     ```
 
-3. 컨트롤러에서 사용 예시
+(3) 컨트롤러에서 사용 예시
    [TestController.java]
    ```
         public class TestController {
