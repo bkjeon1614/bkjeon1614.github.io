@@ -52,7 +52,9 @@ NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 
 ![javascript-nodejs-vertx-2](/img/posts/javascript/nodejs/javascript-nodejs-vertx-2.png)  
 [(이미지 출처)](https://www.javacodegeeks.com/2012/07/osgi-case-study-modular-vertx.html)
 
-
+주의사항(JVM 기반이므로 GC가 발생함)
+- HazelCast를 남용하면 Full GC Time 문제가 발생이 가능하다.
+- 여러 인스턴스를 나눠서 메모리를 작게 잡고, 부하를 분산 시켜, Full GC 소요 시간과, 발생 횟수를 줄여야 함
 
 ### NodeJS와 Vert.x 비교
 ----------------------------------------------------------------
