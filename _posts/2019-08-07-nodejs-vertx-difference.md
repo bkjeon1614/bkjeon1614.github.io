@@ -11,12 +11,14 @@ tags: [javascript, nodejs, vert.x, java]
 
 
 ## NodeJS vs Vert.x
+----------------------------------------------------------------
 해당 문서는 NodeJS와 Vert.x에 대한 대략적인 특징 및 성능 비교에 대해 간단명료하게 작성하였다. 해당 내용에 대해 더 자세한 정보를 보고싶다면 아래 링크에서 확인하자.
 - [NodeJS](https://nodejs.org/ko)
 - [Vert.x](http://vertx.io)
 
 
 ### NodeJS
+----------------------------------------------------------------
 NodeJS는 Google의 Chrome V8 Javascript 엔진 기반인 고성능의 비동기 IO를 지원하는 네트워크 서버이다. 
 - Event - Driven 방식
 - Async / Non Blocking IO 기반
@@ -32,6 +34,7 @@ NodeJS는 Google의 Chrome V8 Javascript 엔진 기반인 고성능의 비동기
 
 
 ### Vert.x
+----------------------------------------------------------------
 NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 방식인 비동기 소켓서버 프레임워크이다. 
 - JVM 위에서 동작
 - Non Blocking 방식 (Netty 기반)
@@ -52,6 +55,7 @@ NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 
 
 
 ### NodeJS와 Vert.x 비교
+----------------------------------------------------------------
 |                      | NodeJS               | Vert.x          |
 | :------------------- | -------------------: |:---------------:|
 | 사용가능 언어 | Javascript | Python,JavaScript,Java,Groovy,Scala |
@@ -65,6 +69,7 @@ NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 
 
 
 ### 성능비교 [(이미지 출처)](https://vertxproject.wordpress.com/2012/05/09/vert-x-vs-node-js-simple-http-benchmarks/)
+----------------------------------------------------------------
 
 #### 200/OK 응답만 주었을 때의 성능 비교
 ![javascript-nodejs-vertx-3](/img/posts/javascript/nodejs/javascript-nodejs-vertx-3.png)
@@ -73,6 +78,7 @@ NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 
 
 
 ### 사용 방향성
+----------------------------------------------------------------
 개인적으론 Vert.x와 Node.js중 선택을하자면 Node를 사용하는게 더 좋다고 생각한다.   
 왜냐하면 vert.x는 2012년 5월에 첫 버전이 나왔지만 2009년에 첫 버전이 나온 Nodejs에 비하면 역사가 짧은 부분도 있으며 레퍼런스 또한 매우 부족한 상황이라  모듈인 경우에도 자체적으로 개발해야되는 상황이 많다.   
 그러므로 서비스 초기엔 성능적인 이점은 조금 양보하여 안정적이며 레퍼런스 및 모듈들이 방대한 Node.js로 운영하다 향후에 Vert.x 진영의 발전 속도나 기술력을 고려하여 도입에 대한 여부를 결정하는것이 좋을 것 같다. ( 이미 왠만한 기업들도 NodeJS 사용을 많이하여 검증이 되었다고 생각한다. )
