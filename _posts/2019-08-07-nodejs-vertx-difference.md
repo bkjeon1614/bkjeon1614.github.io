@@ -41,11 +41,11 @@ NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 
 - 멀티 스레드 지원
 - Event Bus: 각각의 Verticle들이 어떤 언어로 되어있든 상관하지 않고 통신이 가능하도록 도와준다.
 - 클러스터링 지원: 한 하드웨어에 여러 가지 vert.x 를 띄울 수 있음. (HazelCast 기반으로 데이터 공유가 가능하다.)
-- 멀티 인스턴스 지원을 통한 성능 증대: 동시에 여러 개의 Verticle을 실행할 수 있다. 여러 개의 Thread를 띄우더라도, 각 Thread는 독립적으로 동작하고 각 Thread 간에 객체 공유나 자원의 공유가 없이 전혀 다르게 독립적으로 동작한다.
+- 멀티 인스턴스 지원을 통한 성능 증대: 동시에 여러 개의 Verticle을 실행할 수 있다. 여러 개의 Thread를 띄우더라도, 각 Thread는 독립적으로 동작하고 각 Thread 간에 객체 공유나 자원의 공유가 없이 전혀 다르게 독립적으로 동작하므로 결과적으로는 Thread Safe하게 수행된다.
 
 > Netty: 유지 관리가 용이한 고성능 프로토콜 서버와 클라이언트를 신속하게 개발하기 위한 비동기식 이벤트 기반 네트워크 애플리케이션 프레임워크
 
-> Verticle: Vert.x의 하나의 애플리케이션(=Servlet과 같음)이며 독립된 Class Loader에서 독립된 Object로 존재하므로 Multi threading 문제가 발생하지 않음.
+> Verticle: Vert.x의 하나의 애플리케이션(=Servlet과 같음)이며 독립된 Class Loader에서 독립된 Object로 존재하므로 Multi threading 문제가 발생하지 않음. 기본적으로 Non Blocking으로 작동하며 여러가지 언어로 작성될 수 있다.
 
 > Hazelcast: 분산 환경에서 데이터 공유를 위한 In-Memory Data Grid 오픈소스 솔루션
 
