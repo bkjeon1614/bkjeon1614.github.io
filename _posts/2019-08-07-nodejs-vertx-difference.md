@@ -58,6 +58,7 @@ NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 
 주의사항(JVM 기반이므로 GC가 발생함)
 - HazelCast를 남용하면 Full GC Time 문제가 발생이 가능하다.
 - 여러 인스턴스를 나눠서 메모리를 작게 잡고, 부하를 분산 시켜, Full GC 소요 시간과, 발생 횟수를 줄여야 함
+> ※ 참고로, Vert.x에 embedded된, HazelCast는 Community 버전이다. (무료 버전). HazelCast는 자바 기반이기 때문에, 대용량 메모리를 사용하게 되면, Full GC가 발생할때, 시스템의 순간적인 멈춤 현상이 발생하기 때문에, 이를 감안해서 사용하거나, 또는 상용 버전을 사용하면 Direct Memory라는 개념을 사용하는데, 이는 Java Heap을 사용하지 않고, Native 메모리를 바로 접근 및 관리 함으로써, 대용량 메모리를 GC Time이 없이 사용할 수 있다.
 
 ### NodeJS와 Vert.x 비교
 ----------------------------------------------------------------
