@@ -75,7 +75,7 @@ Verticle 간에 메세지를 주고 받을 수 있다.
 | 기반 언어 | C | Java |
 | 사용가능 언어 | Javascript | Python,JavaScript,Java,Groovy,Scala |
 | 지원 모듈 | 40,000개 이상 | 100개 이하 |
-| 안전성 | Netty, HazleCast 등 안정된 엔진위에 개발됨 | V8 엔진 자체가 불안함 |
+| 안전성 | V8 엔진 자체가 불안함 | Netty, HazleCast 등 안정된 엔진위에 개발됨 |
 | 클러스터링 | 한 하드웨어에 여러개 NodeJS를 띄울 수 있음. NodeJS 인스턴스간 상태 Share 불가 | 한 하드웨어에 여러개의 vertx를 띄울 수 있음. node간의 상태 공유 메세징 가능 |
 | 레퍼런스 | 매우 풍부 | 매우 적음(ex:공식 서적 2개) |
 | 성능 | 열세 (한 node 인스턴스당 CPU 코어 1개 이상 사용 불가, 멀티스레딩 안됨) | 우세 (JVM기반으로 하나의 vert.x 인스턴스에 여러개의 Verticle 인스턴스를 띄워서 CPU의 사용 극대화) |
