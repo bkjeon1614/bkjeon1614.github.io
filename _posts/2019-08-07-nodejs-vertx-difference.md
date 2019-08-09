@@ -35,6 +35,11 @@ NodeJS는 Google의 Chrome V8 Javascript 엔진 기반인 고성능의 비동기
   - Singgle Thread Model 기반이므로 하나의 request를 처리할 때 CPU를 많이 사용하면 다른 요청 처리가 지연되며 전체적인 응답 시간 저하로 연결된다.
   - 에러가 나면 대부분 서버가 죽어버리기 때문에 운영 관점에서 트러블 슈팅 등이 어렵다.
 
+> libev: Event Loop 라이브러리
+> libeio: 비동기 I/O 라이브러리
+> c-ares: 비동기 DNS를 지원하는 오픈 소스
+> openSSL: 암호화 라이브러리
+
 ### Vert.x
 ----------------------------------------------------------------
 NodeJS로부터 영향을 받은 프로젝트이며 NodeJS처럼 Event - Driven 방식인 비동기 소켓 서버 프레임워크이다. 
