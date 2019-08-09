@@ -28,7 +28,7 @@ NodeJS는 Google의 Chrome V8 Javascript 엔진 기반인 고성능의 비동기
 [(이미지 출처)](https://bcho.tistory.com/)
 
 동작과정
-  - 먼저 V8 엔진 기반으로 동작하며 그 기반으로 Single Thread 기반의 Event Loop (libuv) 가 돌면서 요청을 처리하고 시스템 적으로 Non-blocking io를 지원하지 않는 io 호출이 있는 경우, 이를 비동기 처리하기 위해서 내부의 Thread Pool (libio)을 별도
+  - 먼저 V8 엔진 기반으로 동작하며 그 기반으로 Single Thread 기반의 Event Loop (libev) 가 돌면서 요청을 처리하고 시스템 적으로 Non-blocking io를 지원하지 않는 io 호출이 있는 경우, 이를 비동기 처리하기 위해서 내부의 Thread Pool (libeio)을 별도
 이용하여 처리하고 그 위에 네트워크 프로토콜을 처리하는 socket, http 바인딩 모듈이 로드 되고, 맨 윗단에 node.js에서 제공하는 standard library(ex: console, 파일 핸들링 등)가 로드된다.
 
 단점
