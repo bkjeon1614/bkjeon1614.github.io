@@ -15,12 +15,12 @@ tags: [vuejs, vue, javascript]
 - 안정적
 - 큰 커뮤니티 또는 큰 단체에서 지원하며 문서화가 잘되어 있거나 레퍼런스 또한 많아야 한다.
 
-
 # Vue 특징
 - 낮은 Learning Curve
   - 단순한 구성 요소
   - 기존 자바스크립트 지식만으로 충분
   - 컴포넌트 단위 관리
+
 - [가능성](https://trends.google.com/trends/explore?date=today%205-y&q=angular.js,react.js,vue.js,angular2)
 - github
    - 2017-06-30
@@ -45,5 +45,5 @@ tags: [vuejs, vue, javascript]
   
 <br><br>
 ## 참고 사이트
-https://velog.io/@skyepodium
+https://velog.io/@skyepodium  
 https://sungjk.github.io
