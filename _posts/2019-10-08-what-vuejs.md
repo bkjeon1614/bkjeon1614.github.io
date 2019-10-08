@@ -9,15 +9,19 @@ comments: true
 tags: [vuejs, vue, javascript]
 ---
 
-# 왜 Vuejs?
+# 선택조건
+- 낮은 Learning Curve
+- 성능
+- 안정적
+- 큰 커뮤니티 또는 큰 단체에서 지원하며 문서화가 잘되어 있거나 레퍼런스 또한 많아야 한다.
+
+
+# Vue 특징
 - 낮은 Learning Curve
   - 단순한 구성 요소
   - 기존 자바스크립트 지식만으로 충분
   - 컴포넌트 단위 관리
-- 성능
-- 안정적
-- 큰 커뮤니티 또는 큰 단체에서 지원하며 문서화가 잘되어 있거나 레퍼런스 또한 많아야 한다.
-- 가능성(https://trends.google.com/trends/explore?date=today%205-y&q=angular.js,react.js,vue.js,angular2)
+- [가능성](https://trends.google.com/trends/explore?date=today%205-y&q=angular.js,react.js,vue.js,angular2)
 - github
    - 2017-06-30
      ![what-vuejs-1](/img/posts/javascript/vuejs/what-vuejs-1.jpg)
@@ -27,11 +31,7 @@ tags: [vuejs, vue, javascript]
      ![what-vuejs-4](/img/posts/javascript/vuejs/what-vuejs-4.png)
      ![what-vuejs-5](/img/posts/javascript/vuejs/what-vuejs-5.png)
      ![what-vuejs-6](/img/posts/javascript/vuejs/what-vuejs-6.png)
-
-
-
-# Vue 특징
-- Model-View 양방향 바인딩 지원
+- [Model-View 양방향 바인딩 지원](https://velog.io/@skyepodium/Vue.js-v-model%EA%B3%BC-syntax-sugar-7ajrp44tnq)
   - 두 데이터 혹은 정보의 소스를 모두 일치시키는 기법
 - Component-Based ( 단일 파일 Component -> 유지보수 용이하며 개발속도가 빠름 )
 - Virtual DOM 을 사용하여 빠른 렌더링
