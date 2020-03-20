@@ -1,6 +1,6 @@
 ---
 layout: post
-title : "okta"
+title : "데이터 표준화"
 subtitle : "2020-03-20-db-metadata-standardization.md"
 date: 2020-03-20 22:30:00
 author: "전봉근"
