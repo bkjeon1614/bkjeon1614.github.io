@@ -72,7 +72,7 @@ DB를 설계할 때 보통 혼자하면 상관이없지만 여럿이서 하게�
   ```
 
 사용예시
-![db-meta-1](/img/posts/db/common/db-meta-1.png) 
+![db-meta-1](/img/posts/db/common/db-meta-1.PNG) 
 
 단어: 상품(PROD) + 명(NM)
 도메인: 명 VARCHAR2(800)
