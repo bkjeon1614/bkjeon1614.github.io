@@ -12,7 +12,7 @@ tags: [java, gradle, springboot]
 # Gradle Multi Project (Gradle 7.1.1 기준 대응)
 
 ## 필수참고
-- https://bkjeon1614.tistory.com/38 포스팅을 먼저 참고하고오자. 해당 포스팅은 Gradle 업그레이드로 인한 Deprecate 대응이므로 일부 코드수정만 확인할 수 있다. ([참고 Github Repo](https://github.com/bkjeon1614/java-example-code))
+- https://bkjeon1614.tistory.com/38 포스팅을 먼저 참고하고오자. 해당 포스팅은 Gradle 업그레이드로 인한 Deprecate 대응이므로 일부 코드수정만 확인할 수 있다. ([참고 Github Repo](https://github.com/bkjeon1614/java-example-code/tree/develop/sample-multi-module))
 
 ## 시작하기전에
 - 이전 포스팅에서 작성했던 Gradle 기능중 일부 삭제된 부분이 존재한다. 삭제된 내용은 하기 내용을 참고하자.
