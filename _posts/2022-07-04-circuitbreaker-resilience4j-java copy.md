@@ -174,9 +174,7 @@ resilience4j는 다양한 프레임워크에서 돌아갈 수 있는 모듈이�
 - 모듈별 애노테이션 설정의 name 값에 일치시킬 상수선언   
   [Resilience4jCode.java]   
   ```
-  /**
-  * Resilience4j 상수 선언 (서킷브레이커 관련 모듈 네임 매핑 용도)
-  */
+  // Resilience4j 상수 선언 (서킷브레이커 관련 모듈 네임 매핑 용도)
   public final class Resilience4jCode {
 
       public static final String RETRY_TEST_3000 = "retry-test-3000";
