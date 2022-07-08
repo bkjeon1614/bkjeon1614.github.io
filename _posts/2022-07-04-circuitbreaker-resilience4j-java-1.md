@@ -1,8 +1,8 @@
 ---
 layout: post
-title : "Circuitbreaker-Resilience4j-Java"
-subtitle : "2022-07-04-circuitbreaker-resilience4j-java.md"
-date: 2021-07-04 20:00:00
+title : "Circuitbreaker-Resilience4j-Java 1편"
+subtitle : "2022-07-04-circuitbreaker-resilience4j-java-2.md"
+date: 2022-07-04 20:00:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
@@ -10,7 +10,7 @@ tags: [java, msa, springboot]
 ---
 
 
-# 서킷브레이커(=Circuitbreaker) Resilience4j 적용 (Java + Spring Boot)
+# 서킷브레이커(=Circuitbreaker) Resilience4j 적용 (Java + Spring Boot) 1편
 
 
 ## 서킷브레이커란
@@ -103,6 +103,7 @@ tags: [java, msa, springboot]
     - recordException: 실패로 기록할 Exception을 판단하는 Predicate<Throwable>을 설정 By default all exceptions are recored as failures. (커스터마이징, 기본값: throwable -> true)
     - ignoreException: 기록하지 않을 Exception을 판단하는 Predicate<Throwable>을 설정 (커스터마이징, 기본값: throwable -> true)
     - recordFailure: 어떠한 경우에 Failure Count를 증가시킬지 Predicate를 정의해 CircuitBreaker에 대한 Exception Handler를 재정의하는 것이다. true를 return할 경우, failure count를 증가시키게 된다 (기본값: false)
+
 
 ## 시작하기 (Spring Boot에 Resilience4j(Retry, Circuit Breaker) 적용)
 resilience4j는 다양한 프레임워크에서 돌아갈 수 있는 모듈이다. 그러므로 Spring Boot에서 지원하는 전용 모듈을 추가해야 한다. [참고링크](https://resilience4j.readme.io/docs/getting-started-3)
@@ -303,3 +304,5 @@ resilience4j는 다양한 프레임워크에서 돌아갈 수 있는 모듈이�
     ```    
 
 > 여기까지 적용하면 완료이다. 상황에 맞게 잘 활용하면 된다.
+
+> 해당 적용된 부분을 모니터링을 하고 싶으면 다음 포스팅인 [서킷브레이커(=Circuitbreaker) Resilience4j 적용 (Java + Spring Boot) 2편]() 을 참고하자.
