@@ -6,7 +6,7 @@ date: 2022-07-04 20:00:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
-tags: [java, msa, springboot]
+tags: [java, msa, springboot, circuitbreaker]
 ---
 
 
