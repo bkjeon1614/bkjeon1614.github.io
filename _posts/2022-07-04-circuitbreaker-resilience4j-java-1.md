@@ -305,4 +305,4 @@ resilience4j는 다양한 프레임워크에서 돌아갈 수 있는 모듈이�
 
 > 여기까지 적용하면 완료이다. 상황에 맞게 잘 활용하면 된다.
 
-> 해당 적용된 부분을 모니터링을 하고 싶으면 다음 포스팅인 [서킷브레이커(=Circuitbreaker) Resilience4j 적용 (Java + Spring Boot) 2편]() 을 참고하자.
+> 해당 적용된 부분을 모니터링을 하고 싶으면 다음 포스팅인 [서킷브레이커(=Circuitbreaker) Resilience4j 적용 (Java + Spring Boot) 2편](https://bkjeon1614.tistory.com/712) 을 참고하자.
