@@ -120,3 +120,4 @@ public class CircuitBreakerService {
       ![msa-circuitbreaker-actuator-8](/img/posts/msa/msa-circuitbreaker-actuator-8.png)   
 
 
+> 해당 적용된 부분을 Prometheus + Grafana 모니터링을 적용하고 싶으면 다음 포스팅인 [서킷브레이커(=Circuitbreaker) Resilience4j 적용 (Java + Spring Boot) 3편](https://bkjeon1614.tistory.com/714) 을 참고하자.
