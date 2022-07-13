@@ -86,7 +86,7 @@ Grafana는 오픈소스 메트릭 데이터 시각화 도구이다.
 - prometheus 의존성을 추가한 후 {domain}/actuator 로 접속하면 하기 이미지와 같이 prometheus 가 추가된 것을 볼 수 있다.   
   ![msa-circuitbreaker-actuator-9](/img/posts/msa/msa-circuitbreaker-actuator-9.png)
 
-- prometheus.yml 작성
+- prometheus.yml 작성    
   [prometheus.yml]    
   ```
   # prometheus
