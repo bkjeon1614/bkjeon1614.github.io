@@ -9,7 +9,9 @@ comments: true
 tags: [javascript, vuejs, frontend, client]
 ---
 
-# Props? Emit? 그리고 Vuex, Eventbus
+# Vuex VS Eventbus
+
+## Props? Emit? 그리고 Vuex, Eventbus
 Vue 에서 컴포넌트간 통신은 `props` 와 `emit` 을 통하여 전달한다.
 먼저 비교하기전에 props 와 emit 에 대해 모르는 사람들이 있을 수 있으니 간단하게 정리하자면 아래와 같다.
 - props: 상위 컴포넌트의 데이터를 하위 컴포넌트에 전달하는 특성이며 하위 컴포넌트에서 전달받기 위해서는 props 를 명시적으로 선언해야 한다.
@@ -18,7 +20,7 @@ Vue 에서 컴포넌트간 통신은 `props` 와 `emit` 을 통하여 전달한�
 앞서 말했듯이 props 와 emit 이 많아지면 관리가 복잡해져 사이드 이펙트가 발생할 확률이 높아지므로 이러한 문제점을 해결하기 위하여 주로 상태 관리 패턴 라이브러리를 활용하며 Vue 에서는 보편적으로 `Vuex` 나 `Eventbus` 를 활용한다.
 주로 전역으로 데이터가 전달이 가능하며 수신 방법이 간단하다는 대표적인 장점이 있지만 무분별한 선언으로 리소스를 낭비한다던가 전역 범위로 사용되므로 데이터 충돌 등의 이슈가 발생할 수 있어 주의하여 사용해야 한다.
 
-# 되도록 Vuex 를 사용하는편이 좋다.
+## 되도록 Vuex 를 사용하는편이 좋다.
 Vuex 와 Eventbus 중 왠만하면 Vuex 를 사용하는것이 좋다.
 보통 이러한 관련 포스팅을 찾아보면 애플리케이션 복잡성에 따라 규모가 크면 vuex, 작으면 event bus 를 사용하는 것이 좋다고 나와있는데 ([https://v2.vuejs.org/v2/style-guide/?redirect=true#Non-flux-state-management-use-with-caution](https://v2.vuejs.org/v2/style-guide/?redirect=true#Non-flux-state-management-use-with-caution)) 이러한 내용이 틀린 내용은 아니지만
 왜 Vuex 를 사용해야 되는지 알아보자.
