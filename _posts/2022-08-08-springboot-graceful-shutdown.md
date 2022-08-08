@@ -2,7 +2,7 @@
 layout: post
 title : "Spring Boot Graceful Shutdown"
 subtitle : "2022-08-08-springboot-graceful-shutdown.md"
-date: 2022-08-08 22:00:00
+date: 2022-08-08 21:18:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
