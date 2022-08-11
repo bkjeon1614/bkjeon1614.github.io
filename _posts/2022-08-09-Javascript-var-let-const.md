@@ -1,7 +1,7 @@
 ---
 layout: post
 title : "Javascript var, let, const 차이"
-subtitle : "2022-08-09-Javascript-var-let-const"
+subtitle : "2022-08-09-javascript-var-let-const.md"
 date: 2022-08-09 22:06:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
