@@ -1,7 +1,7 @@
 ---
 layout: post
-title : "Spring Batch"
-subtitle : "2022-09-07-java-springbatch.md"
+title : "Spring Batch 1편 - Spring Batch 란?"
+subtitle : "2022-09-07-java-springbatch-1.md"
 date: 2022-09-07 13:50:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
@@ -114,7 +114,6 @@ Job -> JobInstance -> JobExecution
 - ItemReader: `Step` 에서 `한 항목씩 검색`한다. 제공할 수 있는 항목이 소진되면 null 을 반환
 - ItemWriter: Spring Batch 에서 사용하는 `출력` 기능
 - ItemProcessor: `비즈니스 처리를 담당` 하며 항목이 유효하지 않다고 판단하는 경우 null 을 반환
-
 
 
 ## 참고
