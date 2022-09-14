@@ -9,7 +9,7 @@ comments: true
 tags: [spring, java, jvm, spring batch]
 ---
 
-# Spring Batch
+# Spring Batch 란?
 Spring Batch 를 사용하면서 내부적으로 어떻게 동작하는지 어떤 특징이 있는지 등에 대해서 한 번 정리가 다시할 필요성을 느껴서 해당 포스팅을 작성하게 되었다.
 
 
