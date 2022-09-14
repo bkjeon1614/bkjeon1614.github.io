@@ -10,7 +10,7 @@ tags: [spring, java, jvm, spring batch]
 ---
 
 # Spring Batch 활용
-
+이전글: https://bkjeon1614.tistory.com/737
 
 ## Spring Batch 프로젝트 생성
 - 프로젝트 환경
