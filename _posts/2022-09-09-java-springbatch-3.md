@@ -10,7 +10,7 @@ tags: [spring, java, jvm, spring batch]
 ---
 
 # Spring Batch Meta Table
-이전글: https://bkjeon1614.tistory.com/738
+이전글: [Spring Batch 2편 - Spring Batch 활용](https://bkjeon1614.tistory.com/738)
 작업코드: [작업코드](https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-study/spring-batch-study-jpa)
 
 하기 이미지는 Spring Batch 를 사용하기 위해 필요한 메타 테이블이며 이것들이 각각 어떤 데이터를 저장하는지에 대해 알아보자.

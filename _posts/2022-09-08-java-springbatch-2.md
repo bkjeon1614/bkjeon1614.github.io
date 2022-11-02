@@ -10,7 +10,7 @@ tags: [spring, java, jvm, spring batch]
 ---
 
 # Spring Batch 활용
-이전글: https://bkjeon1614.tistory.com/737
+이전글: [Spring Batch 1편 - Spring Batch 란?](https://bkjeon1614.tistory.com/737)
 작업코드: [작업코드](https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-study/spring-batch-study-jpa)
 
 ## Spring Batch 프로젝트 생성

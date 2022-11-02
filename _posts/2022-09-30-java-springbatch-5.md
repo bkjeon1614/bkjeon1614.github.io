@@ -10,7 +10,7 @@ tags: [spring, java, jvm, spring batch]
 ---
 
 # Scope & Job Parameter
-이전글: https://bkjeon1614.tistory.com/740   
+이전글: [Spring Batch 4편 - Spring Batch Job Flow](https://bkjeon1614.tistory.com/740)   
 작업코드: [작업코드](https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-study/spring-batch-study-jpa)
 
 ## Job Parameter, Scope

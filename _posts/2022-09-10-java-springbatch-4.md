@@ -10,7 +10,7 @@ tags: [spring, java, jvm, spring batch]
 ---
 
 # Spring Batch Job Flow
-이전글: https://bkjeon1614.tistory.com/739  
+이전글: [Spring Batch 3편 - Spring Batch Meta Table 설명](https://bkjeon1614.tistory.com/739)  
 작업코드: [작업코드](https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-study/spring-batch-study-jpa)
 
 실제 비지니스 로직을 처리하는 기능은 `Step` 에 구현되어 있다. 즉, `Batch 로 실제 처리하고자 하는 기능과 설정을 모두 포함한다.` Job 내부의 Step 들 간에 순서 또는 처리 프로세스를 제어하기 위해 여러 Step 들이 어떻게 관리해야 하는지 차근차근 알아보자.
