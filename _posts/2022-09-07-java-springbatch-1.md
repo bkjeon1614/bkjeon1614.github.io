@@ -58,7 +58,7 @@ FIle              XML                  XML 파싱 지원
 Spring Batch 프로젝트는 Accenture와 Spring Source의 공동 작업으로 2007년에 탄생하였다. 즉, Accenture의 배치 노하우 & 기술력과 Spring 프레임워크가 합쳐져 만들어진 것이 `Spring Batch` 이다. 또한 Spring 의 특성을 그대로 가져왔으므로 `DI, AOP, 서비스 추상화` 등의 Spring 프레임워크의 대표적인 3대 요소를 모두 사용할 수 있다.
 
 ### Batch 의 Domain 용어
-![springbatch-1](/img/posts/language/java/springbatch-1.png)    
+![springbatch-1](/img/posts/language/java/springbatch/springbatch-1.png)    
 이미지 출처: https://docs.spring.io/
 - 각 `Job` 들을 실행하기 위한 `JobLauncher` 구현
 - 하나의 `Job` 은 여러개의 `Step` 으로 구성될 수 있다.
@@ -86,7 +86,7 @@ Job -> JobInstance -> JobExecution
   - executionContext: 실행간에 유지되어야 하는 사용자 데이터가 포함된 속성집합소
 
 ### Step
-![springbatch-2](/img/posts/language/java/springbatch-2.png)    
+![springbatch-2](/img/posts/language/java/springbatch/springbatch-2.png)    
 이미지 출처: https://docs.spring.io/
 - batch 작업의 독립적이고 순차적인 단계를 캡슐화하는 도메인 객체
 - 모든 `Job` 은 하나 or 여러개의 `Step` 으로 구성
@@ -105,7 +105,7 @@ Job -> JobInstance -> JobExecution
 ### Spring Batch 의 메타데이터
 `Spring Batch` 에서는 `메타 데이터 테이블` 들이 필요하다. 해당 테이블들은 상기 설명되었던 내용들을 담고 있다. (실행된 Job 목록, 실패한 Job 또는 Batch Parameter, 다시 실행한다면 어디서 부터 시작하면 될지, 어떤 Job 의 어떤 Step 있고 Step 들 중 성공/실패한 것들이 어떤것들이 있는지 등..) `즉, 이러한 메타데이터를 직접 개발자가 구현하지 않고 제공받는것을 이용하여 구현할 수 있기 떄문에 개발자는 비즈니스로직에 집중할 수 있다.`
 - Meta-Data Schema   
-  ![springbatch-3](/img/posts/language/java/springbatch-3.png)    
+  ![springbatch-3](/img/posts/language/java/springbatch/springbatch-3.png)    
   > 해당 테이블들이 있어야 정상동작하므로 개발자가 직접 생성해야한다. 본인 IDE에서 파일검색으로 `schema-` 를 검색해보면 메타 테이블들의 스키마가 DBMS에 맞춰 각각 존재하는것을 참고하여 create table 해주면 된다. 
 
 ### Item

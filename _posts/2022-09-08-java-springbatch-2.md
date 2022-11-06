@@ -22,9 +22,9 @@ tags: [spring, java, jvm, spring batch]
 
 - 프로젝트 생성
   - 프로젝트 유형 설정   
-    ![springbatch-4](/img/posts/language/java/springbatch-4.png)    
+    ![springbatch-4](/img/posts/language/java/springbatch/springbatch-4.png)    
   - 프로젝트 관련 설정   
-    ![springbatch-5](/img/posts/language/java/springbatch-5.png)    
+    ![springbatch-5](/img/posts/language/java/springbatch/springbatch-5.png)    
   - 생성된 build.gradle 확인   
     [build.gradle]    
     ```
@@ -179,15 +179,15 @@ Spring Batch 를 사용하기 위해서는 `메타 데이터 테이블` 들이 �
           driver-class-name: com.mysql.jdbc.Driver 
     ```
   - application profile 세팅 후 구동   
-    ![springbatch-6](/img/posts/language/java/springbatch-6.png)    
-    ![springbatch-7](/img/posts/language/java/springbatch-7.png)    
+    ![springbatch-6](/img/posts/language/java/springbatch/springbatch-6.png)    
+    ![springbatch-7](/img/posts/language/java/springbatch/springbatch-7.png)    
     > 메타 테이블 데이터인 `BATCH_JOB_INSTANCE` 가 존재하지 않아서 배치가 실패됨을 확인할 수 있다. 메타 테이블을 생성하지 않아서 표시되는 에러이므로 테이블들을 생성하자.   
   - 메타 테이블 생성
     - schema-mysql.sql 파일 검색 후 mysql 에 명령실행 후 확인   
-      ![springbatch-8](/img/posts/language/java/springbatch-8.png)    
-      ![springbatch-9](/img/posts/language/java/springbatch-9.png)    
+      ![springbatch-8](/img/posts/language/java/springbatch/springbatch-8.png)    
+      ![springbatch-9](/img/posts/language/java/springbatch/springbatch-9.png)    
     - 다시 배치를 실행해보자   
-      ![springbatch-10](/img/posts/language/java/springbatch-10.png)    
+      ![springbatch-10](/img/posts/language/java/springbatch/springbatch-10.png)    
 
 
 ## 참고

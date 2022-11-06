@@ -82,10 +82,10 @@ public class NextJobConfiguration {
 }
 ```
 그 다음 Program arguments 에서 `version=1` 로 변경한 다음    
-![springbatch-24](/img/posts/language/java/springbatch-24.png)       
+![springbatch-24](/img/posts/language/java/springbatch/springbatch-24.png)       
 
 실행하게되면    
-![springbatch-25](/img/posts/language/java/springbatch-25.png)       
+![springbatch-25](/img/posts/language/java/springbatch/springbatch-25.png)       
 기존에 작성하였던 `simpleJob` 또한 실행되었다는 것을 로그로 확인할 수 있다. 이 경우 지정한 Batch Job 만 실행되도록 설정해보자.
 
 먼저 프로젝트의 src/main/resources/application.yml 의 설정을 추가하자     
@@ -103,8 +103,8 @@ spring:
 해당 추가된 batch.job.names 설정값은 `Program arguments 로 job.name 값이 넘어오면 해당 값과 일치하는 Job 만 실행` 하겠다는 설정이다. 여기서 `:NONE` 는 `job.name` 가 있으면 job.name 을 할당하고 없으면 `NONE` 을 할당하겠다는 의미이다. 또한 해당 값이 `NONE` 이면 `어떤 배치도 실행하지 않겠다` 라는 의미이다 즉, `혹여나 값이 없을 때 모든 배치들이 실행하지 않도록 막는` 중요한 역할을 한다.
 
 이제 IDE 의 Program arguments 에 `--job.name=nextJob` 을 입력하고 실행해보자. (`이전 실행에서 version1 이 이미 실행되었으니 version2 로 변경해야 한다.`)
-![springbatch-26](/img/posts/language/java/springbatch-26.png)       
-![springbatch-27](/img/posts/language/java/springbatch-27.png)         
+![springbatch-26](/img/posts/language/java/springbatch/springbatch-26.png)       
+![springbatch-27](/img/posts/language/java/springbatch/springbatch-27.png)         
 
 > 위와 같이 필요한 job 만 변경해주면서 실행하면되고, 실제 운영에서는 `java -jar batch.jar --job.name=nextJob` 과 같이 실행해주면 된다.
 
@@ -211,10 +211,10 @@ public class StepNextConditionalJobConfiguration {
   - `build()` 앞에 있는 end 는 FlowBuilder 를 종료하는 end
 
 이제 여기서 실행하면 `conditionalJobStep1` 의 분기처리를 위해 상태값 조정이 필요한 `ExitStatus.FAILED` 코드로 먼저 FAILED 를 발생시켜 step1 -> step3 flow 를 테스트를 해보자. (원하는 상황에 맞게 분기로직을 작성하려면 contribution.setExitStatus 의 값을 변경해주면 된다. 또한 여기서 중요한건 `.on()` 이 캐치하는 상태값이 BatchStatus 가 아닌 ExitStatus 라는걸 확인할 수 있다.)    
-![springbatch-28](/img/posts/language/java/springbatch-28.png)        
+![springbatch-28](/img/posts/language/java/springbatch/springbatch-28.png)        
 
 그 다음 contribution.setExitStatus(ExitStatus.FAILED); 를 주석처리 후 실행해보자.     
-![springbatch-29](/img/posts/language/java/springbatch-29.png)        
+![springbatch-29](/img/posts/language/java/springbatch/springbatch-29.png)        
 정상 Flow 인 step1 -> step2 -> step3 순으로 차례대로 수행된 것을 확인할 수 있다.
 
 ## Batch Status VS Exit Status
@@ -380,7 +380,7 @@ public class DeciderJobConfiguration {
   - `decider()` 의 상태값을 보고 일치하면 `to()` 에 포함된 `step` 을 호출
 
 상기 코드를 보면 모든 조건에 대한 부분을 `OddDecider` 가 전담한다. 즉, `역할과 책임이 분리` 되어있다. 코드를 실행하면 홀수/짝수가 나오면서 서로 다른 step (oddStep, evenStep) 이 실행되는 것을 확인할 수 있다.   
-![springbatch-30](/img/posts/language/java/springbatch-30.png)        
+![springbatch-30](/img/posts/language/java/springbatch/springbatch-30.png)        
 
 
 ## 참고
