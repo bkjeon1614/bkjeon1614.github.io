@@ -81,13 +81,13 @@ protected final I doRead() throws Exception {
 즉, ItemReader.read에서 1건씩 데이터를 조회해 Chunk size만큼 데이터를 쌓는 것이 provide()가 하는 일입니다.    
 
 ## SimpleChunkProcessor
-ChunkProcessor 는 Processor와 Writer 로직을 담고 있다.
-[springbatch-34](/img/posts/language/java/springbatch/springbatch-34.png)       
+ChunkProcessor 는 Processor와 Writer 로직을 담고 있다.  
+[springbatch-34](/img/posts/language/java/springbatch/springbatch-34.png)        
 
-실제 구현체는 기본적으로 사용되는 것이 SimpleChunkProcessor 이다.
+실제 구현체는 기본적으로 사용되는 것이 SimpleChunkProcessor 이다.  
 [springbatch-35](/img/posts/language/java/springbatch/springbatch-35.png)       
 
-상기 클래스를 보면 Spring Batch에서 Chunk 단위 처리를 어떻게 하는지 아주 상세하게 확인할 수 있으며 처리를 담당하는 핵심 로직은 process() 이다. 해당 process() 는 하기 코드를 참고하자.    
+상기 클래스를 보면 Spring Batch에서 Chunk 단위 처리를 어떻게 하는지 아주 상세하게 확인할 수 있으며 처리를 담당하는 핵심 로직은 process() 이다. 해당 process() 는 하기 코드를 참고하자.     
 [springbatch-36](/img/posts/language/java/springbatch/springbatch-36.png)       
 Chunk<I> inputs를 파라미터로 받습니다. 해당 데이터는 앞서 chunkProvider.provide() 에서 받은 ChunkSize 만큼 쌓인 item 이며, transform() 에서는 전달 받은 inputs을 doProcess()로 전달하고 변환값을 받는다.  
 transform()을 통해 가공된 대량의 데이터는 write()를 통해 일괄 저장되고 write()는 저장이 될수도 있고, 외부 API로 전송할 수 도 있습니다. 이는 개발자가 ItemWriter를 어떻게 구현했는지에 따라 달라진다.
