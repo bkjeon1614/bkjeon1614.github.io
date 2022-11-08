@@ -10,7 +10,7 @@ tags: [spring, java, jvm, spring batch]
 ---
 
 # ItemReader
-이전글: [Spring Batch 5편 - Spring Batch Scope & Job Parameter](https://bkjeon1614.tistory.com/744)   
+이전글: [Spring Batch 6편 - Chunk-Oriented Processing](https://bkjeon1614.tistory.com/744)   
 작업코드: [작업코드](https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-study/spring-batch-study-jpa)
 
 
