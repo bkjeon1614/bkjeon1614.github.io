@@ -324,6 +324,7 @@ Spring Batch 에서 공식적으로 지원하지 않는 Writer 를 사용하고 
 - Reader에서 읽어온 데이터를 RestTemplate으로 외부 API로 전달해야할때
 - 임시저장을 하고 비교하기 위해 싱글톤 객체에 값을 넣어야할때
 - 여러 Entity를 동시에 save 해야할때  
+
 샘플 코드를 작성해보자.  
 [CustomItemWriterJobConfiguration.java]   
 ```
