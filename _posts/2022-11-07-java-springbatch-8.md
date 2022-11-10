@@ -310,6 +310,11 @@ JpaItemWriter 는 JPA 를 사용하므로 영속성 관리를 위해 EntityManag
 그리고 필수값 체크 메소드인 afterPropertiesSet 에 EntityManager 만 set 하여 설정을 마무리하자.   
 ```
 // JpaItemWriterJobConfiguration.java 에 추가
+...
+// InitializingBean 를 implements 한다.
+public class ProcessorConvertJobConfiguration implements InitializingBean {
+...
+@Override
 public void afterPropertiesSet() throws Exception {
 	Assert.notNull(entityManagerFactory, "EntityManagerFactory is required");
 }
