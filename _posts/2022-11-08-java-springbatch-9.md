@@ -1,6 +1,6 @@
 ---
 layout: post
-title : "Spring Batch 9편 - ItemProcessor"
+title : "Spring Batch 9편(마무리) - ItemProcessor"
 subtitle : "2022-11-08-java-springbatch-9.md"
 date: 2022-11-08 18:50:00
 author: "전봉근"
