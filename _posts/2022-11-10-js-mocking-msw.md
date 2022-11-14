@@ -20,7 +20,7 @@ tags: [js, javascript, vuejs, api]
 ## Mocking 라이브러리 선택
 먼저 Mocking 라이브러리는 sinon, nock, msw 등 여러가지들을 사용하고 있다고 한다.   
 ![moking-msw-1](/img/posts/javascript/msw/moking-msw-1.png)     
-상기 이미지의 라이브러리들을 대표적으로 사용하고 있으며 이 중 가장 러닝커브가 낮고, GraphQL 또한 적용이 가능한 MSW(=Mock Service Worker) 를 선택하게 되었다.    
+상기 이미지의 라이브러리들을 대표적으로 사용하고 있으며 이 중 가장 러닝커브가 낮고, 디버깅에 용이하며 GraphQL 또한 적용이 가능한 MSW(=Mock Service Worker) 를 선택하게 되었다.    
 MSW 는 별도 환경없이 네트워크 레벨에서 요청을 가로채도록 설계되어 있어 API 에 종속성 없이 높은 수준의 작업이 가능하다. (실제 사용하는 방식처럼 테스트가 가능함)
 
 
@@ -44,7 +44,7 @@ MSW 는 이벤트를 통해 애플리케이션의 나가는 요청을 수신 대
 
 ## 2. MSW 설치
 ### 2-1. Vue Project 설치
-이미 설치되어 있는 사람은 해당 내용을 건너 뛰어도 된다. 3번 부터 시작하자.
+이미 설치되어 있는 사람은 해당 내용을 건너 뛰어도 된다. 3번 부터 시작하자.      
 1. Vue 프로젝트 설치 명령 실행
    ```
    $ vue create hello-world
