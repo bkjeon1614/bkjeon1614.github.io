@@ -41,7 +41,9 @@ MSW 는 이벤트를 통해 애플리케이션의 나가는 요청을 수신 대
 ![moking-msw-2](/img/posts/javascript/msw/moking-msw-2.png)    
 
 > 샘플 코드는 필요한 내용에 대해서만 간단하게 작성하므로 필요한 부분이 있으면 알아서 개선시키면 된다.
-
+       
+[샘플코드](https://github.com/bkjeon1614/vuejs-example-code/tree/main/vue3-typescript-msw)
+           
 ## 2. MSW 설치
 ### 2-1. Vue Project 설치
 이미 설치되어 있는 사람은 해당 내용을 건너 뛰어도 된다. 3번 부터 시작하자.      
@@ -148,6 +150,7 @@ MSW 는 이벤트를 통해 애플리케이션의 나가는 요청을 수신 대
     }
   },
 ...    
+```    
     
 [src/api/index.ts]   
 ```
@@ -374,7 +377,7 @@ const routes: Array<RouteRecordRaw> = [
 ```         
      
 #### 2-4-3. 샘플코드 실행
-http://localhost:8080 실행하면 하기 이미지와 같이 데이터를 출력하는 것을 볼 수 있다.    
+`npm run serve` 실행하면 하기 이미지와 같이 데이터를 출력하는 것을 볼 수 있다.    
 ![moking-msw-4](/img/posts/javascript/msw/moking-msw-4.png)    
 
 #### 2-4-4. MSW 적용을 위한 샘플코드 작성
@@ -412,6 +415,7 @@ export const getUserData = (params: { id: string }) => {
     
 [src/views/user/UserView.scss]   
 ```
+/* 필요시 작성 */
 ```
 
 [src/views/user/UserView.vue]   
