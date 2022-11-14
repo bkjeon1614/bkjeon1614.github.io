@@ -586,3 +586,4 @@ if (process.env.NODE_ENV === "development") {
 
 ## 참고
 - https://mswjs.io/
+- https://tech.kakao.com/2021/09/29/mocking-fe/
