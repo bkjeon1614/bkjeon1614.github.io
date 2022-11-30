@@ -142,6 +142,13 @@ SES 는 Simple Email Servcie 의 약자로 이메일 전송 서비스이며 마�
             "X-SES-MESSAGE-TAGS": tag0,
             "X-SES-MESSAGE-TAGS": tag1,
           },
+          // 파일첨부 filename: 파일명, path: 다운로드 풀경로
+          attachments: [
+            {
+              filename: "test.xlsx",
+              path: www.test.com/test.xlsx,
+            },
+          ],          
         };
 
         // Send the email.
