@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "AWS Lambda 와 SES(=Simple Email Service) 를 이용한 간단한 메일 발송 (NodeJS)"
-subtitle: "2022-11-30-aws-lambda-ses-mail.md"
-date: 2022-11-30 18:50:00
+subtitle: "2022-11-29-aws-lambda-ses-mail.md"
+date: 2022-11-29 17:50:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
