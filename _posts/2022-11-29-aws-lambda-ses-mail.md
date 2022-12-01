@@ -164,15 +164,15 @@ SES 는 Simple Email Servcie 의 약자로 이메일 전송 서비스이며 마�
      ![aws-lambda-ses-mail-7](/img/posts/aws/mail/aws-lambda-ses-mail-7.png)      
    - 함수이름 및 Node 버전 입력 후 함수생성     
      ![aws-lambda-ses-mail-8](/img/posts/aws/mail/aws-lambda-ses-mail-8.png)      
-   - API 호출 연동을 위한 트리거 추가 클릭
+   - API 호출 연동을 위한 트리거 추가 클릭     
      ![aws-lambda-ses-mail-9](/img/posts/aws/mail/aws-lambda-ses-mail-9.png)      
-   - API 게이트웨이 선택
+   - API 게이트웨이 선택      
      ![aws-lambda-ses-mail-10](/img/posts/aws/mail/aws-lambda-ses-mail-10.png)      
-   - 하기 이미지와 같이 선택 후 생성한다. (API 이름 정도만 기재한다. 이외에 다른 옵션들은 따로 찾아보자.)     
+   - 하기 이미지와 같이 선택 후 생성한다. (API 이름 정도만 기재한다. 이외에 다른 옵션들은 따로 찾아보자.)          
      ![aws-lambda-ses-mail-11](/img/posts/aws/mail/aws-lambda-ses-mail-11.png)    
-   - Test 실행하여 결과 확인   
+   - Test 실행하여 결과 확인       
      ![aws-lambda-ses-mail-12](/img/posts/aws/mail/aws-lambda-ses-mail-12.png)       
-   - 상기 프로젝트때 만든 샘플코드를 압축하여 하기 이미지처럼 업로드한다.    
+   - 상기 프로젝트때 만든 샘플코드를 압축하여 하기 이미지처럼 업로드한다.      
      ![aws-lambda-ses-mail-13](/img/posts/aws/mail/aws-lambda-ses-mail-13.png)    
 
 
