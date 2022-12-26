@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "FeignClient 를 사용하여 Rest API 를 간편하게 사용하자"
+title: "SpringBoot 에서 FeignClient 를 사용하여 Rest API 를 간편하게 사용하자"
 subtitle: "2022-12-17-java-springboot-feignclient.md"
 date: 2022-12-17 18:30:00
 author: "전봉근"
