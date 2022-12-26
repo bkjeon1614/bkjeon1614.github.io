@@ -311,4 +311,4 @@ http://localhost:9090/api/v1/feign/users/1
 ```
 
 ## Feign 패키지 구조
-![springboot-feign-1](/img/posts/java/springboot-feign-1.png)     
+![springboot-feign-1](/img/posts/language/java/springboot-feign-1.png)     
