@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SCDF(=Spring Cloud Data Flow) - 1편"
-subtitle: "2022-12-29-java-spring-cloud-data-flow.md"
+subtitle: "2022-12-29-java-spring-cloud-data-flow-1.md"
 date: 2022-12-29 18:30:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
@@ -9,7 +9,7 @@ comments: true
 tags: [java, spring, springboot, springcloud, scdf]
 ---
 
-# SCDF(=Spring Cloud Data Flow)
+# SCDF(=Spring Cloud Data Flow) - 1편
 ## SCDF 란
 Spring Cloud Data Flow 는 Cloud Foundry 및 Kubernetes에서 스트리밍 및 일괄 데이터 처리 파이프라인을 구축하기 위한 마이크로서비스 기반 툴킷이다. [공식문서](https://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/)      
       
