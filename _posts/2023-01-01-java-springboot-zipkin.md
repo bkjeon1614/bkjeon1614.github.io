@@ -26,7 +26,7 @@ tags: [java, spring, springboot, zipkin]
 Zipkin 이란 분산 환경에서 로그 트레이싱하는 오픈소스로 트위터에서 개발되었으며, 현재 가장 활성화된 오픈소스라고 한다. (플러그인 또는 부가적인 도구가 많음). Zipkin 으로 추적할 수 있는 분산 트랜잭션은 HTTP, gRPC 가 있다.       
        
 Zipkin 의 아키텍쳐는 아래와 같다.      
-![springboot-zipkin-1](/img/posts/language/java/zipkin/springboot-zipkin-1.png)        
+![springboot-zipkin-1](/img/posts/language/java/zipkin/springboot-zipkin-1.PNG)        
 1. `Reporter` 가 Transport 를 통해서 Collector 에 트레이스 정보를 전달한다.
    - Reporter
      - 각 서버는 계측(instrumented) 라이브러리를 사용해야 Reporter 로서 동작할 수 있다고 한다. Zipkin 에서는 다양한 언어에 대한 라이브러리를 [제공](https://zipkin.io/pages/tracers_instrumentation.html)하며 Java 환경이므로 [Brave](https://github.com/openzipkin/brave) 를 사용할 수 있으며 또한 Spring 프레임워크에서는 [Spring Cloud Sleuth](https://github.com/spring-cloud/spring-cloud-sleuth) 의 BraveTracer 를 통하여 트레이스 데이터를 관리하기 위한 기능들을 제공하고 있어 쉽게 적용할 수 있다.     
@@ -38,7 +38,7 @@ Zipkin 의 아키텍쳐는 아래와 같다.
    $ curl -sSL https://zipkin.io/quickstart.sh | bash -s
    $ java -jar zipkin.jar --STORAGE_TYPE=elasticsearch --ES_HOSTS=http://127.0.0.1:9200
    ```
-   ![springboot-zipkin-2](/img/posts/language/java/zipkin/springboot-zipkin-2.png)        
+   ![springboot-zipkin-2](/img/posts/language/java/zipkin/springboot-zipkin-2.PNG)        
         
 Zipkin 을 실행하면 하기 이미지 처럼 실행된다. (Zipkin UI Dashboard에는 접속이 되지만, Zipkin Client Library로부터 어떠한 정보도 받지 않았기 때문에 아무런 데이터도 나오지 않는다.)      
 ![springboot-zipkin-3](/img/posts/language/java/zipkin/springboot-zipkin-3.png)        
