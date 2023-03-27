@@ -108,7 +108,6 @@ tags: [devops, springboot, static analysis]
    ```     
 2. 동작여부 테스트     
    ```
-   // 
    $ ./gradlew spotbugsMain
    ```   
 3. resources/static 경로에서 spotbugs.html 파일이 생성된걸 확인할 수 있다.   
