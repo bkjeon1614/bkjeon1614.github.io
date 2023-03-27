@@ -76,6 +76,7 @@ tags: [devops, springboot, static analysis]
    ...
 
    // ---------------- Static Application Security Testing (SAST) Start
+   // https://github.com/spotbugs/spotbugs-gradle-plugin/blob/master/README.md
    tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
       spotbugs {
          ignoreFailures = true   // 오류무시여부
