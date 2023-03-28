@@ -101,7 +101,7 @@ tags: [devops, springboot, static analysis]
    $ ./gradlew spotbugsMain
    ```   
 3. src/main/resources 경로에서 spotbugs.html 파일이 생성된걸 확인할 수 있다.   
-4. http://localhost:9090/spotbugs.html 에서 확인 ( 따로 스크립트로 정적경로로 이동하는 build.gradle 에 스크립트를 작성하고 webconfig 수정하여 화면에 표시함 )    
+4. http://localhost:9090/spotbugs.html 에서 확인 ( 따로 스크립트로 정적경로로 이동하는 build.gradle 에 스크립트를 작성하고 Java WebMvcConfigurer 를 수정하여 화면에 표시함 )    
    ![springboot-spotbugs-3](/img/posts/language/java/tool/springboot-spotbugs-3.png)       
 
 
