@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Spring Boot + Gradle + Gitlab 을 활용한 정적 코드 분석 도구 Spotbugs 적용"
+title: "Spring Boot + Gradle 을 활용한 정적 코드 분석 도구 Spotbugs 적용"
 subtitle: "2023-03-22-springboot-spotbugs.md"
 date: 2023-03-22 18:40:00
 author: "전봉근"
@@ -9,8 +9,8 @@ comments: true
 tags: [devops, springboot, static analysis]
 ---
 
-# Spring Boot + Gradle + Gitlab 을 활용한 정적 코드 분석 도구 Spotbugs 적용
-해당 내용은 Spotbugs 4.7.3 기준으로 작성하였고, [Spotbugs Gradle Plugin 5.0.14](https://github.com/spotbugs/spotbugs-gradle-plugin/blob/master/README.md) 를 활용하였다.    
+# Spring Boot + Gradle 을 활용한 정적 코드 분석 도구 Spotbugs 적용
+해당 내용은 [Spotbugs 4.7.3](https://spotbugs.github.io/) 기준으로 작성하였고, [Spotbugs Gradle Plugin 5.0.14](https://github.com/spotbugs/spotbugs-gradle-plugin/blob/master/README.md) 를 활용하였다.    
     
 
 ## 정적 코드 분석 도구란
@@ -23,7 +23,7 @@ tags: [devops, springboot, static analysis]
 
 ## Spotbugs 란
 [Spotbugs](https://spotbugs.github.io/) 는 자바 바이트 코드를 분석하여 버그 패턴을 발견하는 정적분석 공개 소프트웨어다. (상기 언급된 내용처럼 GNU LGPL 라이센스를 적용)    
-원래 기존에 존재했던 정적분석도구인 `Findbugs` 를 계승한 프로젝트이며 미국의 Maryland 대학에서 2006 년에 개발하였고 Java 프로그램에서 발생가능한 100여개의 잠재적인 에러에 대해 등급별로 구분하여 탐지하고 그 결과를 XML 로 저장할 수 있도록 지원한다. 또한 룰셋을 커스터마이징을 통해 적용이 가능하다.
+원래 기존에 존재했던 정적분석도구인 [Findbugs](https://findbugs.sourceforge.net/) 를 계승한 프로젝트이며 미국의 메릴랜드 대학에서 2004 년에 개발하였고 Java 프로그램에서 발생가능한 100여개의 잠재적인 에러에 대해 등급별로 구분하여 탐지하고 그 결과를 XML 로 저장할 수 있도록 지원한다. 또한 룰셋을 커스터마이징을 통해 적용이 가능하다.
 
 
 ## Spotbugs 에서 제공하는 탐지유형 (4.7.3 기준)
@@ -127,3 +127,4 @@ tags: [devops, springboot, static analysis]
 - https://camelsource.tistory.com/
 - 공개SW를 활용한 소프트웨어 개발보안 점검가이드 일부 참조
 - IGLOO_PLUS 일부 참조
+- ChatGPT
