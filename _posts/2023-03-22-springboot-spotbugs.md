@@ -100,8 +100,8 @@ tags: [devops, springboot, static analysis]
    ```
    $ ./gradlew spotbugsMain
    ```   
-3. resources/static 경로에서 spotbugs.html 파일이 생성된걸 확인할 수 있다.   
-4. http://localhost:9090/spotbugs.html 에서 확인    
+3. src/main/resources 경로에서 spotbugs.html 파일이 생성된걸 확인할 수 있다.   
+4. http://localhost:9090/spotbugs.html 에서 확인 ( 따로 스크립트로 정적경로로 이동하는 build.gradle 에 스크립트를 작성하고 webconfig 수정하여 화면에 표시함 )    
    ![springboot-spotbugs-3](/img/posts/language/java/tool/springboot-spotbugs-3.png)       
 
 
@@ -117,4 +117,3 @@ tags: [devops, springboot, static analysis]
 - https://camelsource.tistory.com/
 - 공개SW를 활용한 소프트웨어 개발보안 점검가이드 일부 참조
 - IGLOO_PLUS 일부 참조
-- ChatGPT
