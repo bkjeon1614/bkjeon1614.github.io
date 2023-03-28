@@ -95,16 +95,6 @@ tags: [devops, springboot, static analysis]
    // ---------------- Static Application Security Testing (SAST) End
 
    ...
-
-   task buildStep {
-      ...
-      // SpringBoot Application 에서 화면을 표시하기위해 정적경로에 추출한 HTML 파일을 복사
-      copy {
-            from projectDir.toString() + "/src/main/resources/"
-            include "spotbugs.html"
-            into serverFolderResourcesDir + "static/"         
-      }
-   }
    ```     
 2. 동작여부 테스트     
    ```
