@@ -70,8 +70,10 @@ spring:
   sleuth:
     sampler:
       probability: 1.0  # Zipkin 에 트랜잭션을 어느정도 비율로 보낼지에 대한 설정 값이며 기본값은 10%(0.1) 이며, 1.0 이면 트랜잭션을 100% 보내게 된다.
+      enabled: false
     zipkin:
       base-url: http://[Zipkin 실행 호스트 ip]:9411
+      enabled: false
 ```
 
 ### 테스트
