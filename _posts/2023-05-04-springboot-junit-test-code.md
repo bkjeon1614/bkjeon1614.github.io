@@ -254,7 +254,7 @@ Given - When - Then Pattern 은 테스트 코드를 접해본 개발자들은 �
        assertThat(feignUserList).isNotNull();
    }   
    ```     
-4. 테스크 실행
+4. 테스트 실행
    ```
    // integration test 
    $ ./gradlew gradle :base-api:integrationTest
