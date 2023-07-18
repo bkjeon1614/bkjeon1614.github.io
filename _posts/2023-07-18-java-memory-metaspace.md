@@ -28,10 +28,6 @@ PermGen 은 메모리가 제한되기 때문에 OOM(=OutOfMemoryError) 이 발�
 |메모리 튜닝|Heap, Perm 영역 튜닝|Heap 튜닝, Native 영역은 OS가 동적 조정|
 |메모리 옵션|-XX:PermSize, -XX:MaxPermSize|-XX:MetaspaceSize, -XX:MaxMetaspaceSize|
 
-## 주의할점
-> Metaspace 영역을 설정하지 않으면 default 가 unlimited 이므로 OS 의 메모리를 전부 사용할 수도 있기 때문에 설정을 하는것이 좋으나 결국 필요에 따라 자동적으로 증가하기 때문에 상황에 맞게 설정하는것이 좋을 것 같다.
-
-
 ## 참고
 - https://johngrib.github.io
 - https://blog.voidmainvoid.net
