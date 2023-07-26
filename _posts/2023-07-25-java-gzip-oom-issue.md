@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Redis 성능 개선을 위한 GZIP 압축 로직을 적용시 Native OOM 이슈에 대한 분석"
-subtitle: "2023-07-26-java-gzip-oom-issue.md"
-date: 2023-07-26 18:40:00
+subtitle: "2023-07-25-java-gzip-oom-issue.md"
+date: 2023-07-25 18:40:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
