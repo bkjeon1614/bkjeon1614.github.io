@@ -45,7 +45,8 @@ Native Memory 에서 OOM 이 발생하였고, Heap Memory 는 정상 적이라 �
 ## 해결방법
 [GZIPOutputStream의 디플레이터로 인한 기본 메모리 누수 해결](https://www.ibm.com/support/pages/apar/IZ97009) 을 참고해보면 기본 Deflater 의 close() 메소드를 선언하지 않아서 문제가 발생한다고 되어있다. 그러므로 GZIPOutputStream 의 finish() 호출 후 내부의 기본 Deflater 를 close 하도록 코드를 수정하였다.
 
-1. try-with-resources 구문으로 대체 ([아이템 9. try-finally보다는 try-with-resources를 사용하라](https://recepinanc.medium.com/til-18-prefer-try-with-resources-to-try-catch-finally-afc8c0dc9c05) (with. Autocloseable))      
+1. try-with-resources 구문으로 대체 [아이템 9. try-finally보다는 try-with-resources를 사용하라](https://recepinanc.medium.com/til-18-prefer-try-with-resources-to-try-catch-finally-afc8c0dc9c05) (with. Autocloseable)      
+   - OpenJDK 18 부터는 finally 를 더 이상 사용하지 않는다고 합니다. ([JEP 421](https://openjdk.org/jeps/421))
      
 2. 코드예시 (Autocloseable 로 인하여 gzipOutputStream.finish() > GZIPOutputStream close > ByteArrayOutputStream Close 순으로 자원을 반납)    
    ![code-5](/img/posts/language/java/gzip/code-5.png)       
