@@ -23,9 +23,7 @@ Lettuce 란 Netty(비동기 이벤트 기반 고성능 네트워크 프레임워
 
 ## 환경
 1. Redis 설치 (with. Docker)    
-```
-TEST
-```
+
 ```
 $ sudo docker run --name redis-primary -d -p 6379:6379 redis
 
@@ -38,12 +36,14 @@ $ redis-cli -h localhost -p 6379 monitor | grep foo
 
 
 ## 적용
-1. 의존성 추가 (Lettuce 는 spring-data-redis 만 추가하면 기본의존성으로 사용이 가능)
+1. 의존성 추가 (Lettuce 는 spring-data-redis 만 추가하면 기본의존성으로 사용이 가능)    
+
 ```
 implementation('org.springframework.boot:spring-boot-starter-data-redis')
 ```
 
-2. RedisConnectionFactory 인터페이스를 통해 LettuceConnectionFactory를 생성하여 반환하는 코드를 작성한다.    
+2. RedisConnectionFactory 인터페이스를 통해 LettuceConnectionFactory를 생성하여 반환하는 코드를 작성한다.       
+
 [RedisConfig.java]     
 ```
 package com.example.bkjeon.base.config.redis;
@@ -126,7 +126,8 @@ public class RedisConfig {
 }
 ```
 
-3. yaml 을 작성 (RedisProperties를 통해서 properties에 저장한 host, port를 가지고 와서 연결한다.)
+3. yaml 을 작성 (RedisProperties를 통해서 properties에 저장한 host, port를 가지고 와서 연결한다.)     
+
 ```
 ...
 
@@ -181,8 +182,9 @@ public class RedisController {
 }
 ```     
 
-5. 테스트용 서비스 작성    
-[CacheService.java]
+5. 테스트용 서비스 작성         
+[CacheService.java] 
+
 ```
 ...
 
