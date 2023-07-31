@@ -22,14 +22,14 @@ Lettuce 란 Netty(비동기 이벤트 기반 고성능 네트워크 프레임워
 
 
 ## 환경
-1. Redis 설치 (with. Docker)
+1. Redis 설치 (with. Docker)    
 ```
 $ sudo docker run --name redis-primary -d -p 6379:6379 redis
 
-// 해당 컨테이너에 접속
+# 해당 컨테이너에 접속
 $ docker exec -it redis-primary /bin/bash
 
-// 모니터링
+# 모니터링
 $ redis-cli -h localhost -p 6379 monitor | grep foo
 ```
 
