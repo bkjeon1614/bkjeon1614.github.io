@@ -141,6 +141,7 @@ spring:
 
 4. 테스트용 컨트롤러 작성   
 [RedisController.java]    
+
 ```
 package com.example.bkjeon.base.services.api.v1.cache;
 
@@ -183,7 +184,7 @@ public class RedisController {
 ```     
 
 5. 테스트용 서비스 작성         
-[CacheService.java] 
+[CacheService.java]   
 
 ```
 ...
@@ -228,6 +229,7 @@ public class CacheExampleData {
 ```
 
 7. 테스트    
+
 ```
 $ redis-cli -h localhost -p 6379 monitor | grep foo
 ```
