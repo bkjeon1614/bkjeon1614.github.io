@@ -78,49 +78,48 @@ public class RedisConfig {
 
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate() {
-      RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-      redisTemplate.setConnectionFactory(redisConnectionFactory());
-      redisTemplate.setKeySerializer(new StringRedisSerializer());
-      redisTemplate.setValueSerializer(new StringRedisSerializer());
-      return redisTemplate;
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory());
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+        return redisTemplate;
 	}
 
 	@Bean
 	public RedisConnectionFactory redisConnectionFactory() {
-      LettuceConnectionFactory connectionFactory;
+        LettuceConnectionFactory connectionFactory;
 
-      LettuceClientConfiguration clientConfig = LettuceClientConfiguration
-          .builder()
-          .readFrom(ReadFrom.SLAVE_PREFERRED)
-          .commandTimeout(Duration.ofMillis(500))
-          .build();
-      RedisStaticMasterReplicaConfiguration staticMasterReplicaConfiguration =
-          new RedisStaticMasterReplicaConfiguration(
-              redisProperties.getHost(),
-              redisProperties.getPort()
-          );
-        
-      connectionFactory = new LettuceConnectionFactory(staticMasterReplicaConfiguration, clientConfig);
+        LettuceClientConfiguration clientConfig = LettuceClientConfiguration
+            .builder()
+            .commandTimeout(Duration.ofMillis(500))
+            .build();
+        RedisStaticMasterReplicaConfiguration staticMasterReplicaConfiguration =
+            new RedisStaticMasterReplicaConfiguration(
+                redisProperties.getHost(),
+                redisProperties.getPort()
+            );
+            
+        connectionFactory = new LettuceConnectionFactory(staticMasterReplicaConfiguration, clientConfig);
 
-      return connectionFactory;
+        return connectionFactory;
 	}
 
 	@Bean
 	@Primary
 	public RedisCacheManager isLettuceCacheManager() {
-      RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
-          .defaultCacheConfig()
-          .entryTtl(Duration.ofSeconds(60))
-          .serializeKeysWith(
-            RedisSerializationContext.SerializationPair.fromSerializer(
-                new StringRedisSerializer()))
-          .serializeValuesWith(
-              RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
+            .defaultCacheConfig()
+            .entryTtl(Duration.ofSeconds(60))
+            .serializeKeysWith(
+                RedisSerializationContext.SerializationPair.fromSerializer(
+                    new StringRedisSerializer()))
+            .serializeValuesWith(
+                RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
 
-      return RedisCacheManager.RedisCacheManagerBuilder
-          .fromConnectionFactory(redisConnectionFactory())
-          .cacheDefaults(redisCacheConfiguration)
-          .build();
+        return RedisCacheManager.RedisCacheManagerBuilder
+            .fromConnectionFactory(redisConnectionFactory())
+            .cacheDefaults(redisCacheConfiguration)
+            .build();
 	}
 
 }
