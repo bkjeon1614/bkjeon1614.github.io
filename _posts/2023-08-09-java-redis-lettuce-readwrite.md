@@ -23,6 +23,7 @@ $ docker network create app-tier --driver bridge
 ```
      
 [docker-compose.yml]     
+
 ```
 version: '2'
 
@@ -97,8 +98,9 @@ $ docker-compose up -d
   ...
   ```
 
-- RedisProperties 를 상속받는 RedisReplicaProperties 생성    
-  [RedisReplicaProperties.java]
+- RedisProperties 를 상속받는 RedisReplicaProperties 생성      
+  [RedisReplicaProperties.java]    
+
   ```
   package com.example.bkjeon.base.config.redis;
 
@@ -127,6 +129,7 @@ $ docker-compose up -d
 
 - RedisConnectionFactory 수정 (ReadFrom 적용 및 Replica 정보추가)     
   [RedisConfig.java]      
+
   ```
   @Bean
   public RedisConnectionFactory redisConnectionFactory() {
@@ -134,14 +137,11 @@ $ docker-compose up -d
 
 	  LettuceClientConfiguration clientConfig = LettuceClientConfiguration
 	  	  .builder()
-		  .readFrom(ReadFrom.REPLICA_PREFERRED)
-		  .commandTimeout(Duration.ofMillis(500))
-		  .build();
+		    .readFrom(ReadFrom.REPLICA_PREFERRED)
+		    .commandTimeout(Duration.ofMillis(500))
+		    .build();
 	  RedisStaticMasterReplicaConfiguration staticMasterReplicaConfiguration =
-	  	  new RedisStaticMasterReplicaConfiguration(
-		  	  redisProperties.getHost(),
-			  redisProperties.getPort()
-		  );
+	  	  new RedisStaticMasterReplicaConfiguration(redisProperties.getHost(), redisProperties.getPort());
 
 	  redisProperties.getReplicas()
 	  	  .forEach(replica -> staticMasterReplicaConfiguration.addNode(replica.getHost(), replica.getPort()));
