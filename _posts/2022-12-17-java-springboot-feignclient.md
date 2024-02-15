@@ -19,6 +19,30 @@ tags: [java, spring, springboot]
 
 # 사용법
 ## Dependency    
+- maven
+[pom.xml]   
+```
+ <dependencyManagement>
+     <dependencies>
+         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+...
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+- gradle      
 [build.gradle]   
 ```
 ...
