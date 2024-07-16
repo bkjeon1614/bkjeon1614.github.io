@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Spring Batch 5 + Mybatis (JdbcItem Reader/Writer) 구현"
-subtitle: "2024-07-16-java-springbatch5.md"
-date: 2024-07-16 18:40:00
+subtitle: "2024-07-15-java-springbatch5.md"
+date: 2024-07-15 18:40:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
