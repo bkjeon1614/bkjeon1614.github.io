@@ -10,8 +10,6 @@ tags: [java, spring, spring batch, db, mysql]
 ---
 
 ## Spring Batch 성능 개선 사례 정리
-코드는 [https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-mybatis-codebase](https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-mybatis-codebase) 참고 부탁드립니다.
-
 
 ## 개선 항목 점검 Flow
 1. 유지보수가 좋고 코드가 직관적인 범주 내에서 최적화를 진행
