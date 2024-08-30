@@ -53,16 +53,16 @@ RedisTemplate 의 executePipelined 메소드와 RedisCallback을 사용하여 �
      
 2. RedisConfig 에 redisTemplate bean 추가
    ```
-   ...
+    ...
 
-  @Bean
-  public RedisTemplate<String, Object> redisTemplate() {
-      RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-      redisTemplate.setConnectionFactory(redisConnectionFactory());
-      redisTemplate.setKeySerializer(new StringRedisSerializer());
-      redisTemplate.setValueSerializer(new StringRedisSerializer());
-      return redisTemplate;
-  }   
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate() {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory());
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+        return redisTemplate;
+    }   
    ```        
        
 3. Job 생성      
