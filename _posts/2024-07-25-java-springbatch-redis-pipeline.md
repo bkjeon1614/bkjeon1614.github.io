@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Spring Batch + Redis Pipeline 으로 Aggregation 구현한 성능 개선"
+title: "Spring Batch + Redis Pipeline 으로 구현한 성능 개선"
 subtitle: "2024-07-25-java-springbatch-redis-pipeline.md"
 date: 2024-07-25 20:40:00
 author: "전봉근"
@@ -9,7 +9,7 @@ comments: true
 tags: [java, spring, spring batch, redis, db, mysql]
 ---
 
-## Spring Batch + Redis Pipeline 으로 Aggregation 구현한 성능 개선 
+## Spring Batch + Redis Pipeline 으로 구현한 성능 개선 
 코드 참고는 https://github.com/bkjeon1614/java-example-code/tree/develop/spring-batch-mybatis-codebase 에서 참고 부탁드립니다.
 
 ### Redis Pipeline 이란
@@ -136,15 +136,15 @@ RedisTemplate 의 executePipelined 메소드와 RedisCallback을 사용하여 �
         /**
         * Redis Pipeline Test (pipeline 1000 단위로 처리)
         * [사양]
-        * - version: 7.0.5
-        * - set 명령기준으로 한거라 재 측정필요
+        * - redis version: 7.0.5
         * 1. 10만건
         *    - asis: 117초
         *    - tobe: 7초(1000)
         * 2. 100만건
         *    - asis: 1225초
-        *    - tobe: 64초(1000) - chunk size 를 늘려도 처리속도는 크게 변화가 없다. 레디스 스펙에 영향을 받나? -> Redis 사용량에 따라 성능이 달라질 수 있다.
+        *    - tobe: 64초(1000) - Redis 사용량에 따라 성능이 달라질 수 있다.
         * * 약 19배 증가
+        * 또한 레디스를 사용하여 DB 에서의 집계가 아닌 코드에서 Aggregation 결과를 Redis 에 넣는 방식으로 성능 개선한 사례들이 있다.
         */
         @Bean
         public Tasklet mybatisSampleDataToRedisTasklet() {
@@ -333,4 +333,4 @@ RedisTemplate 의 executePipelined 메소드와 RedisCallback을 사용하여 �
     }   
    ```      
       
-> 완료 후 batch 를 동작시켜서 pipeline 을 사용한것과 안한것의 차이를 비교해보면 chunk size 1000 개 기준 약 19배의 성능이 증가한걸 확인할 수 있다.
+> 완료 후 batch 를 동작시켜서 pipeline 을 사용한것과 안한것의 차이를 비교해보면 chunk size 1000 개 기준 약 19배의 성능이 증가한걸 확인할 수 있다. 
