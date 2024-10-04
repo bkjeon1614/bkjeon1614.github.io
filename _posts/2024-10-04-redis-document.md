@@ -109,6 +109,47 @@ tags: [redis]
   - 한 컬렉션에 여러 아이템 리스트를 사용한다면 Ziplist 를 사용하는게 속도는 느려지지만 메모리를 적게쓰는 방법이 있다.
     - 원래 쓰는 자료구조대신에 ziplist 를 사용하도록 설정만 바꿔서 사용할 수 있다.
     - ziplist 구조
+      - In-Memory 특성 상, 적은 개수라면 선형 탐색을 하더라도 빠름
+      - List, hash, sorted set 등을 ziplist 로 대체해서 처리를 하는 설정이 존재 (단, 설정값 보다 많은 아이템이 존재하면 원래 자료구조로 바뀌게 되어서 속도는 유지하지만 메모리를 더 많이 사용)
+        - hash-max-ziplist-entries, hash-max-ziplist-value
+        - list-max-ziplist-size, list-max-ziplist-value
+        - zset-max-ziplist-entries, zset-max-ziplist-value
+- O(N) 관련 명령을 주의
+  - Redis 는 Single Thread 이고 단순한 get/set 의 경우 초당 10만 TPS 이상 가능 (CPU 속도에 따라 다름)
+  - Redis 는 ProcessInputBuffer 에서 packet 을 하나로 command 를 만들어서 완성되었는지 확인하고 완성이되면 실행 즉, 해당 작업이 처리되는 동안에는 뒤에 packet 이 쌓일 것이다.
+  - 주의할 명령
+    - KEYS
+      - Ex: 모니터링 스크립트가 초당 한번씩 keys 를 호출하는 경우
+      - `scan` 명령으로 대체가 가능 (커서 방식이므로 짧게 여러번 돌리는걸로 구현)
+        ```
+        redis 127.0.0.1:6379> scan 0
+        ```
+    - FLUSHALL, FLUSHDB
+    - Delete Collections
+    - Get ALL Collections
+      - 아이템이 몇만개 든 hash, sorted set, set 에서 모든 데이터를 가져오는 경우
+        - Collection 의 일부만 가져옴
+        - 큰 Collection 을 작은 여러개의 Collection 으로 나누어서 저장
+          - Ex) Userranks -> Userranks1, Userranks2, Userranks3 (하나당 몇천개 안쪽으로 저장하는게 좋음)
+    - `Spring Security Oauth RedisTokenStore` 예전 버전에서 문제가 발생했었다.
+      - List(O(N)) 자료구조를 통해서 이루어지기 때문
+        - 검색, 삭제시에 모든 item 을 매번 찾아야됨 (100 만개쯤 되면 전체 성능에 영향을 줌)
+        - `현재 해결된 버전은 Set(O(1)) 을 이용해서 검색, 삭제를 하도록 수정되어 있음`
+
+#### Redis Replication
+- Async Replication
+  - Replication Lag 이 발생할 수 있다.
+- DBMS 로 보면 statement replication 과 유사 즉, 쿼리로 보냄
+  - 주의할점은 만약 now() 라는 걸 사용하면 primary 와 secondary 와 저장되는 시점이 다르기 때문에 데이터가 다를 수 있다.
+- Replication 설정 과정
+  - secondary 에 replicaof or slaveof 명령을 전달
+  - secondary 는 primary 에 sync 명령 전달
+  - primary 는 현재 메모리 상태를 저장하기 위해 Fork
+  - Fork 한 프로세서는 현재 메모리 정보를 disk 에 dump
+  - 해당 정보를 secondary 에 전달
+  - Fork 이후의 데이터를 secondary 에 계속 전달
+- Replication 주의할 점
 
 
-41:59
+
+55:12
