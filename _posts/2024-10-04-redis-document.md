@@ -149,7 +149,93 @@ tags: [redis]
   - 해당 정보를 secondary 에 전달
   - Fork 이후의 데이터를 secondary 에 계속 전달
 - Replication 주의할 점
+  - Replication 과정에서 fork 가 발생하므로 메모리 부족이 발생할 수 있다.
+  - Redis-cli--rdb (dump) 명령은 현재 상태의 메모리 스냅샷을 가져오므로 같은 문제를 발생시킴
+  - AWS 나 클라우드의 Redis 는 좀 다르게 구현되어서 해당 부분이 좀 더 안정적
+  - 많은 대수의 Redis 서버가 Replica를 두고 있다면
+    - 네트웍 이슈나, 사람의 작업으로 동시에 replication이 재시도 되도록 하면 문제가 발생할 수 있음.
+      - 수동으로 한 대씩 하는 그러한 방식으로 대응이 필요
 
+#### Redis 권장설정 (redis.conf)      
+- Maxclient 설정 50000
+- RDB/AOF 설정 off (단, primary 는 꺼놓지만 secondary 는 rdb or aof 가 필요시에 켠다)
+- 특정 commands disable
+  - keys (AWS Elasticache 는 이미 하고 있음)
+- 전체 장애의 90% 이상이 KEYS 와 SAVE 설정을 사용해서 발생
+- 적절한 ziplist 설정
 
+#### Redis 데이터 분산
+- Application
+  - Consistent Hashing
+    - twemproxy 를 사용하는 방법으로 쉽게 가능
+  - Sharding
+    - Range
+      - 특정 Range 를 정의하고 해당 Range 에 속하면 거기에 저장
+    - Modular
+      - Key(키값) % N(서버대수) 로 서버의 데이터를 결정 (Range 보다 데이터를 균등하게 분배할 가능성이 높다.)
+    - Indexed
+      - 해당 Key 가 어디에 저장되어야 할 관리 서버가 따로 존재 (관리 서버가 죽으면 서버 전체가 마비될 수 있음)
 
-55:12
+#### Redis Cluster
+- Hash 기반으로 Slot 16384 로 구분
+  - Hash 알고리즘은 CRC16 을 사용
+  - Slot = crc16(key) % 16384
+  - Key 가 Key{hashkey} 패턴이면 실제 crc16 에 hashkey 가 사용된다. (hashkey 기준으로 어느 서버로 보낼지 선택)
+  - 특정 Redis 서버는 이 slot range 를 가지고 있고, 데이터 마이그레이션은 이 slot 단위의 데이터를 다른 서버로 전달하게 된다. (migrateCommand 이용)
+- 장점/단점
+  - 장점
+    - 자체적인 primary, secondary failover
+    - slot 단위의 데이터 관리
+  - 단점
+    - 메모리 사용량이 더 많음
+    - 마이그레이션 자체는 관리자가 시점을 결정해야함
+    - Library 구현이 필요함
+
+#### Redis Failover
+- Coordinator 기반 Failover
+  - Zookeeper, etcd, consul 등의 Coordinator 사용
+  - Coordinator 기반으로 설정을 관리한다면 동일한 방식이 가능하다 이미 만들어져 있기 때문에 커스텀이 불가능하여 개발이 필요
+- VIP/DNS 기반 Failover
+  - 서버에 문제가 생기면 정상 서버에 VIP 할당을 통하여 해당 서버를 승격시킴
+  - DNS 기반은 VIP 기반 처럼 형식이 비슷하다. 즉, 도메인을 할당함
+  - VIP/DNS 기반 설명
+    - 클라이언트에 추가적인 구현이 필요하다.
+    - VIP 기반은 외부로 서비스를 제공해야 하는 서비스 업자에 유리 (Ex: 클라우드 업체)
+    - DNS 기반은 DNS Cache TTL 을 관리해야 함
+      - 사용하는 언어별 DNS 캐싱 정책을 잘 알아야 함
+      - 룰에 따라서 한 번 가져온 DNS 정보를 다시 호출하지 않는 경우도 존재
+- Redis Cluster 의 사용
+
+#### 모니터링
+- Redis Info 를 통한 정보
+  - RSS
+  - Used Memory
+  - Connection 수
+  - 초당 처리 요청 수
+- System
+  - CPU
+  - Disk
+  - Network rx/tx
+- CPU 가 100% 를 칠 경우
+  - 처리량이 매우 많다면
+    - CPU 성능이 좋은 서버로 이전
+    - 실제 CPU 성능에 영향을 받음
+      - 그러나 단순 get/set 은 초당 10만 이상 처리가능
+  - O(N) 계열의 특정 명령이 많은 경우
+    - Monitor 명령을 통해 특정 패턴을 파악하는 것이 필요
+    - Monitor 잘못쓰면 부하로 해당 서버에 더 큰 문제를 일으킬 수도 있음. (짧게 쓰는게 좋음)
+- 메모리를 최대치에 근접하게 사용한다면 관리하기가 어려움
+  - Ex) 32GB 장비에서 24GB 이상 사용하면 장비 증설을 고려하는 것이 좋음
+- Client-output-buffer-limit 설정이 필요
+  - client-output-buffer-limit 란 클라이언트별로 출력 버퍼의 크기를 제한하는 설정이며 해당 버퍼의 크기를 제한하여 서버 메모리 문제를 방지하는 역할을 한다.
+  - 항목별로 다르게 설정이 가능
+    - normal: 일반 클라이언트
+    - slave: redis replica slave 클라이언트
+    - pubsub: publish/subscribe 명령을 사용하는 클라이언트
+  - 유형별로 다르게 설정이 가능
+    - soft limit: 일정 시간 동안
+    - soft seconds: 출력 버퍼가 일정 크기 이상
+    - hard limit: 해당 크기를 초과하면 즉시
+
+#### 참고
+- https://www.youtube.com/watch?v=mPB2CZiAkKM
