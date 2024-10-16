@@ -286,10 +286,108 @@ private String getAsyncTestInfo(String message) {
 - 각 CompletableFuture의 결과를 결합한 최종 연산 결과만 필요한 경우, thenCompose() 메서드를 사용하는 것이 적합
 
 #### 병렬처리
+- allOf()
+  - 정적 메서드를 사용하면 여러 Future를 병렬로 처리할 수 있다. var-arg로 제공되는 모든 Future의 처리를 대기하다가 모두 완료되면 CompletableFuture<Void>를 반환한다. 단, 병렬 처리는 가능하지만, 모든 Future의 결과를 결합한 결괏값을 반환할 수 없는 한계가 있다. get() 메서드와 유사한 join() 메서드를 활용하면 allOf() 메서드의 한계를 극복할 수 있지만, Future가 정상적으로 완료되지 않을 경우 확인되지 않은 예외가 발생할 수 있는 단점이 있다는 점을 고려해야 한다.    
+    ```
+    public void isCompletableFutureReturnAllOf(String message) throws ExecutionException, InterruptedException {
+        CompletableFuture<String> testInfoFuture = CompletableFuture.supplyAsync(() -> {
+            log.info("future1: " + Thread.currentThread().getName()); // ForkJoinPool.commonPool-worker-5
+            return getAsyncTestInfo("message1");
+        });
 
+        CompletableFuture<String> testInfoFuture2 = CompletableFuture.supplyAsync(() -> {
+            log.info("future1: " + Thread.currentThread().getName()); // ForkJoinPool.commonPool-worker-9
+            return getReturnStr("message2");
+        }).thenCompose(s -> CompletableFuture.supplyAsync(() -> "testInfoFuture2"));
 
+        CompletableFuture<String> testInfoFuture3 = CompletableFuture.supplyAsync(() -> {
+            log.info("future1: " + Thread.currentThread().getName()); // ForkJoinPool.commonPool-worker-19
+            return getReturnStr2("message3");
+        }).thenCompose(s -> CompletableFuture.supplyAsync(() -> "testInfoFuture3"));;
 
+        CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(testInfoFuture, testInfoFuture2, testInfoFuture3);
+        combinedFuture.get();
 
+        if (testInfoFuture.isDone() && testInfoFuture2.isDone() && testInfoFuture3.isDone()) {
+            String combined = Stream.of(testInfoFuture, testInfoFuture2, testInfoFuture3)
+                .map(CompletableFuture::join)
+                .collect(Collectors.joining(" "));
+            log.info(combined);
+        }
+    }
+
+    private String getAsyncTestInfo(String message) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ie) {
+            log.error("InterruptedException", ie);
+        }
+
+        return "bkjeon async";
+    }    
+
+    private String getReturnStr(String message) {
+        return "Test!!!!";
+    }
+
+    private String getReturnStr2(String message) {
+        return "Test2222!!!!";
+    }    
+    ```     
+
+#### 예외처리
+- handle()
+  - 예외를 잡는 대신 CompletableFuture 클래스를 사용하여 별도의 메서드에서 예외 처리가 가능하며, 연산 결과(성공적으로 완료된 경우)와 발생한 예외(정상적으로 완료되지 않은 경우)를 매개 변수로 받을 수 있다.
+    ```
+    CompletableFuture<String> testInfoFuture = CompletableFuture.supplyAsync(() -> {
+        if (message == null) {
+            throw new IllegalArgumentException("The message must not be null!");
+        }
+        return getAsyncTestInfo(message);
+    }).handle((s, t) -> { // s: Future 실행 완료 후 결괏값, t: Future 실행 중 발생한 예외
+        /**
+            * 연산이 성공적으로 완료된 경우
+            * s = bkjeon async
+            * t = null
+            *
+            * 연산이 정상적으로 완료되지 않고 예외가 발생한 경우
+            * s = null
+            * t = java.util.concurrent.CompletionException: java.lang.IllegalArgumentException: The message must not
+            * be null!
+            */
+        return t == null ? s : "Default value";
+    });
+
+    log.info("============= CompletableFuture Handle Return - {}", testInfoFuture.get());    
+    ```     
+- completeExceptionally()
+  - 연산이 정상적으로 완료되지 않을 경우 예외를 정의하여 비동기 처리를 완료시킬 수 있다. (특정 상황에 예외가 발생하도록 Future에 예외를 지정할 수 있고, 특정 상황에 맞는 동작을 하도록 지정할 수 있어서 동적으로 행동이나 예외를 지정해야 할 경우 사용하면 된다.)
+    ```
+    String testMessage = null;
+    CompletableFuture<String> orderInfoFuture = new CompletableFuture<>();
+    if (testMessage == null) {
+        orderInfoFuture.completeExceptionally(new IllegalArgumentException("The testMessage must not be null!"));
+    }
+
+    if (testMessage != null) {
+        orderInfoFuture.complete(getAsyncTestInfo(testMessage));
+    }
+
+    try {
+        orderInfoFuture.get();
+    } catch (ExecutionException | InterruptedException ee) {
+        Throwable cause = ee.getCause();
+        log.error("Exception occurred: {}", cause.getMessage());
+    }
+    ```      
+
+#### Timeout
+- get(long timeout, TimeUnit unit)
+  -
+- orTimeout()
+  - 
+- completeOnTimeout
+  -
 
 
 
