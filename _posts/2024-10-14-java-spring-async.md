@@ -364,17 +364,17 @@ private String getAsyncTestInfo(String message) {
   - 연산이 정상적으로 완료되지 않을 경우 예외를 정의하여 비동기 처리를 완료시킬 수 있다. (특정 상황에 예외가 발생하도록 Future에 예외를 지정할 수 있고, 특정 상황에 맞는 동작을 하도록 지정할 수 있어서 동적으로 행동이나 예외를 지정해야 할 경우 사용하면 된다.)
     ```
     String testMessage = null;
-    CompletableFuture<String> orderInfoFuture = new CompletableFuture<>();
+    CompletableFuture<String> testInfoFuture = new CompletableFuture<>();
     if (testMessage == null) {
-        orderInfoFuture.completeExceptionally(new IllegalArgumentException("The testMessage must not be null!"));
+        testInfoFuture.completeExceptionally(new IllegalArgumentException("The testMessage must not be null!"));
     }
 
     if (testMessage != null) {
-        orderInfoFuture.complete(getAsyncTestInfo(testMessage));
+        testInfoFuture.complete(getAsyncTestInfo(testMessage));
     }
 
     try {
-        orderInfoFuture.get();
+        testInfoFuture.get();
     } catch (ExecutionException | InterruptedException ee) {
         Throwable cause = ee.getCause();
         log.error("Exception occurred: {}", cause.getMessage());
@@ -383,18 +383,80 @@ private String getAsyncTestInfo(String message) {
 
 #### Timeout
 - get(long timeout, TimeUnit unit)
-  -
+  - get() 메서드 호출 시 전달한 timeout 설정보다 실행 시간이 더 오래 걸린다면 TimeoutException 예외를 발생    
+    ```
+    public void isCompletableFutureReturnCompleteTimeoutGet(String message) {
+        CompletableFuture<String> testInfoFuture = CompletableFuture.supplyAsync(() -> getAsyncTestInfo("TEST"));
+
+        try {
+            testInfoFuture.get(2000, TimeUnit.MILLISECONDS);
+        } catch (TimeoutException | InterruptedException | ExecutionException e) {
+            log.error("Timeout Exception: " + e);
+        }
+    }
+
+    private String getAsyncTestInfo(String message) {
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ie) {
+            log.error("InterruptedException", ie);
+        }
+
+        return "bkjeon async";
+    }
+    ```    
 - orTimeout()
-  - 
+  - 지정된 시간까지 작업이 완료되지 않은 경우, ExecutionException 예외를 발생 (java9 이상부터 사용가능)     
+    ```
+    public void isCompletableFutureReturnCompleteOrTimeout(String message) {
+        CompletableFuture<String> testInfoFuture = CompletableFuture.supplyAsync(() -> getAsyncTestInfo("TEST"))
+            .orTimeout(2, TimeUnit.SECONDS);
+
+        try {
+            testInfoFuture.get();
+        } catch (InterruptedException | ExecutionException e) {
+            log.error("Timeout Exception: " + e);
+        }
+    }
+
+    private String getAsyncTestInfo(String message) {
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ie) {
+            log.error("InterruptedException", ie);
+        }
+
+        return "bkjeon async";
+    }    
+    ```    
 - completeOnTimeout
-  -
+  - 지정된 시간까지 작업이 완료되지 않은 경우, 지정된 기본값으로 Future를 완료 (java9 이상부터 사용가능)     
+    ```
+    public void isCompletableFutureReturnCompleteCompleteOnTimeout(String message) {
+        CompletableFuture<String> testInfoFuture = CompletableFuture.supplyAsync(() -> getAsyncTestInfo("TEST"))
+            .completeOnTimeout("default value", 2, TimeUnit.SECONDS);
+        String result;
 
+        try {
+            result = testInfoFuture.get();
+            log.info(">>>>>>>>>>>>>>>>> result: " + result);
+        } catch (InterruptedException | ExecutionException e) {
+            log.error("Timeout Exception: " + e);
+        }
+    }
 
+    private String getAsyncTestInfo(String message) {
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ie) {
+            log.error("InterruptedException", ie);
+        }
 
+        return "bkjeon async";
+    }
+    ```
 
-
-
-#### 참고
+## 참고
 - https://steady-coding.tistory.com/611
 - https://f-lab.kr/insight/understanding-spring-async-annotation-and-thread-pool
 - https://velog.io/@brucehan/CompletableFuture-%EC%A0%95%EB%A6%AC
