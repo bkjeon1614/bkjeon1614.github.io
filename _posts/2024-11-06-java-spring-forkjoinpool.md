@@ -150,24 +150,24 @@ CompletableFuture와 parallelStream은 내부적으로 ForkJoinPool.commonPool()
 - 만약 첫번 째 요청을 처리하는 동안 스레드를 점유하게 되면, 다음 요청이 도착할 때 스레드를 반환하지 않고 계속 점유하게 되어 하기 내용을 보면 결국 Thread4 만 남아 모든 요청을 처리해야 할 수 있다.
   ```
   // ForkJoinPool.commonPool()
-  - 요청1-featureA: Thread1 점유중
-  - 요청1-featureB: Thread2 점유중
-  - 요청1-featureC: Thread3 점유중
-  - Thread4 (비어있음)
+  요청1-featureA: Thread1 점유중
+  요청1-featureB: Thread2 점유중
+  요청1-featureC: Thread3 점유중
+  Thread4 (비어있음)
   ```
        
 - 또한 Thread 가 Sleep 과 같이 아무 작업도 하지 않고 점유 중이면 심각한 문제를 초래할 수 있다. 하기 내용은 Thread4 까지 점유한 경우이고 이 경우에는 추가 요청은 처리되지 않고 Thread Pool Queue 에 쌓이게 되며, 일정 시간이 지나면 요청이 손실될 수 있다.
   ```
   // ForkJoinPool.commonPool()
-  - 요청1-featureA: Thread1 점유중
-  - 요청1-featureB: Thread2 점유중
-  - 요청1-featureC: Thread3 점유중
-  - 요청2-featureA: Thread4 점유중
+  요청1-featureA: Thread1 점유중
+  요청1-featureB: Thread2 점유중
+  요청1-featureC: Thread3 점유중
+  요청2-featureA: Thread4 점유중
   ```
   ```
   // Thread Pool Queue
-  - 요청2-futureBTask
-  - 요청2-futureCTask
+  요청2-futureBTask
+  요청2-futureCTask
   ```   
       
 > ForkJoinPool.commPool()은 전역적으로 공유되는 스레드 풀을 사용한다. 이 때문에 4개의 스레드가 모두 사용 중이라면, 다른 작업들은 대기 상태에 들어가게 되며, 특히 Blocking I/O가 발생하는 작업이 있을 경우, 스레드 풀 내부의 스레드들이 블록 되어 다른 요청들이 스레드를 얻기 전까지 기다려야 한다. 이로 인해 성능 저하와 같은 문제가 발생할 수 있다. (이러한 문제를 해결하기 위해 각 CompletableFuture나 parallelStream에 대해 독립적인 스레드 풀을 사용하는 방법이 있다.)    
