@@ -10,7 +10,7 @@ tags: [java, spring, spring boot, jvm, thread]
 ---
 
 ## Java ThreadLocal
-[참고](https://github.com/bkjeon1614/java-example-code/tree/main/java11/bkjeon-mybatis-codebase/base-api)
+[참고코드](https://github.com/bkjeon1614/java-example-code/tree/main/java11/bkjeon-mybatis-codebase/base-api)
 
 ### Java ThreadLocal 이란
 Spring Bean 은 싱글톤으로 등록이 된다. 이러한 상황에서 하나의 인스턴스에 여러개의 스레드가 동시에 접근하면 동시성 문제가 발생하게 된다.      
