@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Java Mutex(뮤텍스) 와 Semaphore(세마포어)"
+title: "Java Mutex(뮤텍스) 와 Semaphore(세마포어) 그리고 Spinlock(스핀락)"
 subtitle: "2024-12-11-java-mutex-semaphore"
 date: 2024-12-11 20:40:00
 author: "전봉근"
@@ -9,7 +9,7 @@ comments: true
 tags: [java, spring, spring boot, jvm, thread]
 ---
 
-## Java Mutex(뮤텍스) 와 Semaphore(세마포어)
+## Java Mutex(뮤텍스) 와 Semaphore(세마포어) 그리고 Spinlock(스핀락)
 [참고코드](https://github.com/bkjeon1614/java-example-code/tree/main/java11/bkjeon-mybatis-codebase/base-api)
 
 
@@ -193,7 +193,17 @@ public class LockService {
   - Toilet 3개 <- 대기하는 사람들이 빈 칸으로 들어가는 구조
 
 
+### 스핀락 (Spinlock)은 무엇이며 뮤텍스와 스핀락의 차이점?
+스핀락 (Spinlock) 이란 임계영역이 언락되어 진입이 가능해질 때까지 루프를 돌면서 재시도하여 스레드가 CPU를 점유하고 있는 상태이다. (Busy Waiting 상태) 또한 스핀락은 운영체제 스케쥴링 지원을 받지 않기 때문에, 해당 스레드에 대한 문맥교환(Context Switch) 이 일어나지 않는다.       
+      
+임계영역이 짧은 시간 안에 언락되어 진입이 가능하면 Context Switch 가 일어나질 않기 때문에 효율적이나 임계영역이 오랜 시간동안 연락되지 않으면 그 시간동안 계속 CPU 를 점유하게 되어 다른 스레드가 사용하지 못해 오버헤드가 발생한다. 그래서 스핀락은 Context Switching 가 일어나지 않아 멀티 프로세서 시스템에서만 사용이 가능하다.
+
+뮤텍스는 상태가 오직 획득(Lock) / 해제(Unlock)만 존재한다는 점은 스핀락과 동일하다. 하지만 스핀락이 임계영역이 언락되어 권한을 획득하기까지 Busy Waiting 상태를 유지한다면, 뮤텍스는 Sleep 상태로 들어갔다 Wakeup 되면 다시 권한 획득을 시도한다. 뮤텍스의 경우에는 Locking 메커니즘으로 락을 걸은 스레드만이 임계영역을 나갈 때 락을 해제할 수 있습니다. 시스템 전반의 성능에 영향을 주고 싶지 않고 길게 처리해야하는 작업인 경우에 주로 사용된다. 주로 스레드 작업에서 많이 사용된다. (Busy Waiting 이란 원하는 자원을 얻기 위해 기다리는 것이 아니라 권한을 얻을 때까지 계속 확인하는 것 즉, 스핀락은 Busy Waiting 으로 인하여 시스템에 행이 걸릴 수 있다. 이것은 멀티 프로세서 환경에서 사용하는 것이 좋으며, 짧은 시간의 연산에 대해 사용할 경우 성능이 좋다. 그 외 뮤텍스나 세마포어는 오버헤드가 큰 상황에서 더 좋다.)
+
+
 ### 참고
 - https://ko.wikipedia.org
 - https://medium.com/@kwoncharles/
 - https://notavoid.tistory.com
+- https://velog.io/@deannn/
+- https://ko.wikipedia.org/
