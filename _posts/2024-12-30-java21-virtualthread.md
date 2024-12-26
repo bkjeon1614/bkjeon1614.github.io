@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Java 21 Virtual Thread (작성중)"
+title: "Java 21 Virtual Thread"
 subtitle: "2024-12-30-java21-virtualthread"
 date: 2024-12-30 20:40:00
 author: "전봉근"
