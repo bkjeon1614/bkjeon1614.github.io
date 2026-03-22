@@ -22,7 +22,7 @@ Openclaw 를 AI Agent 를 사용하기 위해선 Claude, ChatGPT 등과 같은 A
     
 
 #### Openclaw AI 모델 선택
-// 하기 명령을 실행하고 이미지와 같이 차례로 넘어갑니다.      
+하기 명령을 실행하고 이미지와 같이 차례로 넘어갑니다.      
 ```
 $ openclaw config
 ```       
