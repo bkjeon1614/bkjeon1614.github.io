@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Openclaw 와 discord 연동을 활용한 AI 비서 만들기 - 1"
+title: "Openclaw 와 discord 연동을 활용한 AI 비서 만들기 - 2"
 subtitle: "2026-03-22-openclaw-discord.md"
 date: 2026-03-22 20:40:00
 author: "전봉근"
