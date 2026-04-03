@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "CMUX로 Claude Code Agent Team 사용하기"
-subtitle: "2026-04-03-claude-code-team-agent-cmux.md"
-date: 2026-04-03 14:40:00
+subtitle: "2026-04-01-claude-code-team-agent-cmux.md"
+date: 2026-04-01 14:40:00
 author: "전봉근"
 header-img: "img/posts/android-bg.jpg"
 comments: true
