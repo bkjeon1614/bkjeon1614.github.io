@@ -226,11 +226,11 @@ cmux claude-teams --model sonnet --worktree /path/to/project
 ### 예제 1: 병렬 코드 리뷰
 
 ```text
-Create an agent team to review PR #142. Spawn three reviewers:
-- One focused on security implications
-- One checking performance impact
-- One validating test coverage
-Have them each review and report findings.
+PR #142를 리뷰할 에이전트 팀을 만들어줘. 리뷰어 3명을 생성해:
+- 보안 관점 리뷰어
+- 성능 영향 리뷰어
+- 테스트 커버리지 검증 리뷰어
+각자 리뷰 후 결과를 보고하도록 해.
 ```
 
 **cmux에서의 협업 흐름:**
@@ -244,9 +244,9 @@ Have them each review and report findings.
 ### 예제 2: 경쟁 가설 디버깅
 
 ```text
-Users report the app exits after one message instead of staying connected.
-Spawn 5 agent teammates to investigate different hypotheses. Have them talk to
-each other to try to disprove each other's theories, like a scientific debate.
+사용자들이 메시지 하나를 보내면 앱이 종료된다고 보고하고 있어. 연결이 유지되지 않는 문제야.
+에이전트 팀원 5명을 생성해서 각각 다른 가설을 조사하게 해줘.
+서로 대화하면서 상대방의 가설을 반박하도록 해. 과학적 토론처럼 진행해.
 ```
 
 **cmux에서의 협업 흐름:**
@@ -260,11 +260,11 @@ each other to try to disprove each other's theories, like a scientific debate.
 ### 예제 3: 기능 병렬 구현
 
 ```text
-Create a team with 3 teammates to implement in parallel:
-- Teammate 1: UserService (src/userService.js)
-- Teammate 2: TodoService (src/todoService.js)
-- Teammate 3: Integration tests (test/)
-Use Sonnet for each teammate.
+3명의 팀원으로 팀을 만들어서 병렬로 구현해줘:
+- 팀원 1: UserService (src/userService.js)
+- 팀원 2: TodoService (src/todoService.js)
+- 팀원 3: 통합 테스트 (test/)
+각 팀원은 Sonnet 모델을 사용해.
 ```
 
 **cmux에서의 협업 흐름:**
